@@ -1,17 +1,17 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
-	"extends": ["./base.jsonc"],
-	"linter": {
-		"rules": {
-			"complexity": {
-				"noStaticOnlyClass": "warn",
-				"noThisInStatic": "warn"
-			},
-			"style": {
-				"useGroupedAccessorPairs": "error",
-				"useReadonlyClassProperties": "error"
-			}
-		}
-	},
-	"root": false
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "extends": ["./base.jsonc"],
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noStaticOnlyClass": "warn",
+        "noThisInStatic": "warn"
+      },
+      "style": {
+        "useGroupedAccessorPairs": "error",
+        "useReadonlyClassProperties": "error"
+      }
+    }
+  },
+  "root": false
 }

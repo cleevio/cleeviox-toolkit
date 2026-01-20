@@ -32,7 +32,6 @@ storybook-static/
 .cache/
 .parcel-cache/
 .swc/
-.eslintcache
 *.tsbuildinfo
 
 # =============================================================================

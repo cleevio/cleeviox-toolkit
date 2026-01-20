@@ -24,7 +24,7 @@
   },
   "scripts": {
     "check": "biome check --write .",
-    "clean": "del .eslintcache .turbo node_modules",
+    "clean": "del .turbo node_modules",
     "fix": "biome:check:fix",
     "format": "biome format .",
     "format:fix": "biome format --write .",

@@ -1,0 +1,45 @@
+{
+  "description": "Lint-staged config",
+  "devDependencies": {
+    "lint-staged": "^16.2.7"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "name": "@cleeviox/lint-staged",
+  "peerDependencies": {
+    "lint-staged": "^16.2.7"
+  },
+  "peerDependenciesMeta": {
+    "lint-staged": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "directory": "packages/lint-staged",
+    "type": "git",
+    "url": "https://github.com/cleevio/cleeviox-toolkit"
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json",
+    "check": "biome check --write .",
+    "clean": "del .turbo tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo dist node_modules",
+    "fix": "run-s biome:check:fix ts",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "prebuild": "del dist tsconfig.build.tsbuildinfo",
+    "ts": "tsc --build tsconfig.json"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "version": "0.0.0"
+}

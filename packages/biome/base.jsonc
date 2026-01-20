@@ -1,343 +1,343 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
-	"assist": {
-		"actions": {
-			"source": {
-				"organizeImports": "on",
-				// "recommended": true,
-				"useSortedAttributes": "on",
-				"useSortedKeys": "on",
-				"useSortedProperties": "on"
-			}
-		}
-	},
-	// "files": {
-	//   "includes": ["!**/dist/**", "*.ts", "*.js"]
-	// },
-	"formatter": {
-		"indentStyle": "space",
-		"indentWidth": 2,
-		"useEditorconfig": false
-	},
-	"javascript": {
-		"formatter": {
-			"arrowParentheses": "always",
-			"bracketSpacing": true,
-			"indentStyle": "space",
-			"indentWidth": 2,
-			"lineWidth": 120,
-			"quoteStyle": "single",
-			"semicolons": "always",
-			"trailingCommas": "all"
-		}
-	},
-	"json": {
-		"formatter": {
-			"indentStyle": "space",
-			"indentWidth": 2
-		}
-	},
-	"linter": {
-		"rules": {
-			"complexity": {
-				"noAdjacentSpacesInRegex": "error",
-				"noArguments": "error",
-				"noBannedTypes": "error",
-				"noCommaOperator": "error",
-				"noEmptyTypeParameters": "error",
-				"noExcessiveCognitiveComplexity": {
-					"level": "warn",
-					"options": {
-						"maxAllowedComplexity": 15
-					}
-				},
-				"noExcessiveLinesPerFunction": {
-					"level": "warn",
-					"options": {
-						"maxLines": 100,
-						"skipBlankLines": true
-					}
-				},
-				"noExcessiveNestedTestSuites": "warn",
-				"noExtraBooleanCast": "error",
-				"noFlatMapIdentity": "error",
-				"noForEach": "error",
-				"noImplicitCoercions": "error",
-				"noUselessCatch": "error",
-				"noUselessConstructor": "error",
-				"noUselessContinue": "error",
-				"noUselessEmptyExport": "error",
-				"noUselessEscapeInRegex": "error",
-				"noUselessLabel": "error",
-				"noUselessLoneBlockStatements": "error",
-				"noUselessRename": "error",
-				"noUselessStringConcat": "error",
-				"noUselessStringRaw": "error",
-				"noUselessSwitchCase": "error",
-				"noUselessTernary": "error",
-				"noUselessThisAlias": "error",
-				"noUselessTypeConstraint": "error",
-				"noUselessUndefinedInitialization": "error",
-				"noVoid": "warn",
-				// Arrow functions yes, but not for /app/**/*.tsx
-				"useArrowFunction": "warn",
-				"useDateNow": "error",
-				"useFlatMap": "on",
-				"useIndexOf": "on",
-				"useLiteralKeys": "error",
-				"useNumericLiterals": "error",
-				"useOptionalChain": "error",
-				"useRegexLiterals": "warn",
-				"useSimpleNumberKeys": "error",
-				"useSimplifiedLogicExpression": "error",
-				"useWhile": "error"
-			},
-			"correctness": {
-				"noConstAssign": "error",
-				"noConstantCondition": "error",
-				"noConstantMathMinMaxClamp": "error",
-				"noConstructorReturn": "error",
-				"noEmptyCharacterClassInRegex": "warn",
-				"noEmptyPattern": "error",
-				"noGlobalDirnameFilename": "warn",
-				"noGlobalObjectCalls": "warn",
-				"noInnerDeclarations": "error",
-				"noInvalidBuiltinInstantiation": "error",
-				"noInvalidConstructorSuper": "error",
-				"noInvalidUseBeforeDeclaration": "error",
-				"noNodejsModules": "warn",
-				"noNonoctalDecimalEscape": "warn",
-				"noPrecisionLoss": "error",
-				"noPrivateImports": "warn",
-				"noProcessGlobal": "error",
-				"noSelfAssign": "error",
-				"noSetterReturn": "error",
-				"noSolidDestructuredProps": "error",
-				"noStringCaseMismatch": "error",
-				"noSwitchDeclarations": "error",
-				"noUndeclaredDependencies": "error",
-				"noUndeclaredVariables": "error",
-				"noUnknownFunction": "error",
-				"noUnreachable": "error",
-				"noUnreachableSuper": "error",
-				"noUnsafeFinally": "error",
-				"noUnsafeOptionalChaining": "error",
-				"noUnusedImports": "error",
-				"noUnusedPrivateClassMembers": "error",
-				"noUnusedVariables": "error",
-				"noVoidTypeReturn": "warn",
-				"useImportExtensions": {
-					"fix": "safe",
-					"level": "error",
-					"options": {
-						"forceJsExtensions": true
-					}
-				},
-				"useIsNan": "error",
-				"useJsonImportAttributes": "warn",
-				"useParseIntRadix": "warn",
-				"useSingleJsDocAsterisk": "warn",
-				"useValidForDirection": "warn",
-				"useValidTypeof": "error",
-				"useYield": "error"
-			},
-			// Nursery Rules have performance issues according to official biomejs docs.
-			// https://biomejs.dev/linter/#nursery
-			// "nursery": "off",
-			"performance": {
-				"noAccumulatingSpread": "error",
-				"noAwaitInLoops": "error",
-				"noBarrelFile": "warn",
-				"noDelete": "error",
-				"noDynamicNamespaceImportAccess": "warn",
-				"noNamespaceImport": "error",
-				"noReExportAll": "warn",
-				"noUnwantedPolyfillio": "warn",
-				"useTopLevelRegex": "error"
-			},
-			"security": {
-				"noGlobalEval": "error",
-				"noSecrets": "error"
-			},
-			"style": {
-				"noCommonJs": "error",
-				"noDefaultExport": "error",
-				"noDescendingSpecificity": "error",
-				"noDoneCallback": "error",
-				"noEnum": "error",
-				"noExportedImports": "warn",
-				"noInferrableTypes": "warn",
-				"noMagicNumbers": "error",
-				"noNamespace": "warn",
-				"noNegationElse": "error",
-				"noNestedTernary": "error",
-				"noNonNullAssertion": "error",
-				"noParameterAssign": "error",
-				"noParameterProperties": "error",
-				"noProcessEnv": "error",
-				"noRestrictedGlobals": {
-					"level": "warn",
-					"options": {
-						"deniedGlobals": {
-							"$": "An example - Obviously jQuery is disgusting."
-						}
-					}
-				},
-				// "noRestrictedImports": {
-				// "level": "error",
-				// Something like react-18n-next
-				// }
-				"noShoutyConstants": "error",
-				"noSubstr": "warn",
-				"noUnusedTemplateLiteral": "error",
-				"noUselessElse": "error",
-				"noYodaExpression": "error",
-				"useArrayLiterals": "error",
-				"useAsConstAssertion": "error",
-				"useAtIndex": "error",
-				"useBlockStatements": "error",
-				"useCollapsedElseIf": "error",
-				"useCollapsedIf": "error",
-				"useComponentExportOnlyModules": "error",
-				"useConsistentArrayType": "error",
-				"useConsistentBuiltinInstantiation": "error",
-				"useConsistentMemberAccessibility": {
-					"level": "error",
-					"options": {
-						"accessibility": "noPublic"
-					}
-				},
-				"useConsistentObjectDefinitions": "error",
-				"useConsistentTypeDefinitions": {
-					"fix": "safe",
-					"level": "error",
-					"options": {
-						"style": "interface"
-					}
-				},
-				"useConst": "error",
-				"useDefaultParameterLast": "error",
-				"useDefaultSwitchClause": "error",
-				"useDeprecatedReason": "error",
-				// "useEnumInitializers": "error", -> not using enums
-				"useExplicitLengthCheck": "error",
-				"useExponentiationOperator": "error",
-				"useExportsLast": "error",
-				"useExportType": "error",
-				"useFilenamingConvention": {
-					"level": "error",
-					"options": {
-						"filenameCases": ["kebab-case"],
-						"strictCase": true
-					}
-				},
-				"useForOf": "error",
-				"useImportType": "error",
-				// "useLiteralEnumMembers": "error", -> not using enums
-				"useNamingConvention": "error",
-				"useNodeAssertStrict": "error",
-				// This can be tuned a little more
-				// "useNamingConvention": {
-				//   "level": "error",
-				//   }
-				// },
-				"useNumberNamespace": "error",
-				"useNumericSeparators": "error",
-				"useObjectSpread": "error",
-				"useShorthandAssign": "error",
-				"useShorthandFunctionType": "error",
-				"useSingleVarDeclarator": "error",
-				"useSymbolDescription": "error",
-				"useTemplate": "error",
-				"useThrowNewError": "error",
-				"useThrowOnlyError": "error",
-				"useTrimStartEnd": "error",
-				"useUnifiedTypeSignatures": "error"
-			},
-			"suspicious": {
-				"noApproximativeNumericConstant": "error",
-				"noAssignInExpressions": "error",
-				"noAsyncPromiseExecutor": "error",
-				"noBiomeFirstException": "warn",
-				"noBitwiseOperators": "warn",
-				"noCatchAssign": "error",
-				"noClassAssign": "error",
-				"noCommentText": "error",
-				"noCompareNegZero": "error",
-				"noConfusingLabels": "error",
-				"noConfusingVoidType": "error",
-				"noConsole": "error",
-				"noConstantBinaryExpressions": "error",
-				"noConstEnum": "error",
-				"noControlCharactersInRegex": "warn",
-				"noDebugger": "error",
-				"noDoubleEquals": "error",
-				"noDuplicateCase": "error",
-				"noDuplicateClassMembers": "error",
-				"noDuplicateCustomProperties": "error",
-				"noDuplicateElseIf": "error",
-				"noDuplicateObjectKeys": "error",
-				"noDuplicateParameters": "error",
-				"noDuplicateProperties": "error",
-				"noEmptyBlockStatements": "error",
-				"noEmptyInterface": "error",
-				"noEvolvingTypes": "error",
-				"noExplicitAny": "error",
-				"noExportsInTest": "error",
-				"noExtraNonNullAssertion": "error",
-				"noFallthroughSwitchClause": "error",
-				"noFocusedTests": "error",
-				"noFunctionAssign": "error",
-				"noGlobalAssign": "error",
-				"noGlobalIsFinite": "error",
-				"noGlobalIsNan": "error",
-				"noImplicitAnyLet": "error",
-				"noImportAssign": "warn",
-				"noIrregularWhitespace": "error",
-				"noLabelVar": "error",
-				"noMisleadingCharacterClass": "error",
-				"noMisleadingInstantiator": "error",
-				"noMisplacedAssertion": "error",
-				"noMisrefactoredShorthandAssign": "error",
-				"noNonNullAssertedOptionalChain": "error",
-				"noOctalEscape": "error",
-				"noPrototypeBuiltins": "warn",
-				"noQuickfixBiome": "warn",
-				"noRedeclare": "error",
-				"noRedundantUseStrict": "error",
-				// Who uses strict directive anymore?
-				// "noRedundantUseStrict": "error"
-				"noSelfCompare": "error",
-				"noShadowRestrictedNames": "error",
-				"noShorthandPropertyOverrides": "error",
-				"noSkippedTests": "error",
-				"noSparseArray": "error",
-				"noSuspiciousSemicolonInJsx": "error",
-				"noTemplateCurlyInString": "error",
-				"noThenProperty": "error",
-				"noTsIgnore": "error",
-				"noUnassignedVariables": "error",
-				"noUnsafeDeclarationMerging": "warn",
-				"noUnsafeNegation": "error",
-				"noUselessEscapeInString": "error",
-				"noUselessRegexBackrefs": "error",
-				"noVar": "error",
-				"noWith": "error",
-				"useAdjacentOverloadSignatures": "error",
-				"useAwait": "error",
-				"useBiomeIgnoreFolder": "warn",
-				"useDefaultSwitchClauseLast": "error",
-				"useErrorMessage": "warn",
-				"useGetterReturn": "error",
-				"useGuardForIn": "error",
-				"useIsArray": "error",
-				"useIterableCallbackReturn": "error",
-				"useNamespaceKeyword": "error",
-				"useNumberToFixedDigitsArgument": "error",
-				// "useStaticResponseMethods": "error"
-				"useStrictMode": "error"
-			}
-		}
-	},
-	"root": false
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        // "recommended": true,
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on",
+        "useSortedProperties": "on"
+      }
+    }
+  },
+  // "files": {
+  //   "includes": ["!**/dist/**", "*.ts", "*.js"]
+  // },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "useEditorconfig": false
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 120,
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
+  },
+  "json": {
+    "formatter": {
+      "indentStyle": "space",
+      "indentWidth": 2
+    }
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noAdjacentSpacesInRegex": "error",
+        "noArguments": "error",
+        "noBannedTypes": "error",
+        "noCommaOperator": "error",
+        "noEmptyTypeParameters": "error",
+        "noExcessiveCognitiveComplexity": {
+          "level": "warn",
+          "options": {
+            "maxAllowedComplexity": 15
+          }
+        },
+        "noExcessiveLinesPerFunction": {
+          "level": "warn",
+          "options": {
+            "maxLines": 100,
+            "skipBlankLines": true
+          }
+        },
+        "noExcessiveNestedTestSuites": "warn",
+        "noExtraBooleanCast": "error",
+        "noFlatMapIdentity": "error",
+        "noForEach": "error",
+        "noImplicitCoercions": "error",
+        "noUselessCatch": "error",
+        "noUselessConstructor": "error",
+        "noUselessContinue": "error",
+        "noUselessEmptyExport": "error",
+        "noUselessEscapeInRegex": "error",
+        "noUselessLabel": "error",
+        "noUselessLoneBlockStatements": "error",
+        "noUselessRename": "error",
+        "noUselessStringConcat": "error",
+        "noUselessStringRaw": "error",
+        "noUselessSwitchCase": "error",
+        "noUselessTernary": "error",
+        "noUselessThisAlias": "error",
+        "noUselessTypeConstraint": "error",
+        "noUselessUndefinedInitialization": "error",
+        "noVoid": "warn",
+        // Arrow functions yes, but not for /app/**/*.tsx
+        "useArrowFunction": "warn",
+        "useDateNow": "error",
+        "useFlatMap": "on",
+        "useIndexOf": "on",
+        "useLiteralKeys": "error",
+        "useNumericLiterals": "error",
+        "useOptionalChain": "error",
+        "useRegexLiterals": "warn",
+        "useSimpleNumberKeys": "error",
+        "useSimplifiedLogicExpression": "error",
+        "useWhile": "error"
+      },
+      "correctness": {
+        "noConstAssign": "error",
+        "noConstantCondition": "error",
+        "noConstantMathMinMaxClamp": "error",
+        "noConstructorReturn": "error",
+        "noEmptyCharacterClassInRegex": "warn",
+        "noEmptyPattern": "error",
+        "noGlobalDirnameFilename": "warn",
+        "noGlobalObjectCalls": "warn",
+        "noInnerDeclarations": "error",
+        "noInvalidBuiltinInstantiation": "error",
+        "noInvalidConstructorSuper": "error",
+        "noInvalidUseBeforeDeclaration": "error",
+        "noNodejsModules": "warn",
+        "noNonoctalDecimalEscape": "warn",
+        "noPrecisionLoss": "error",
+        "noPrivateImports": "warn",
+        "noProcessGlobal": "error",
+        "noSelfAssign": "error",
+        "noSetterReturn": "error",
+        "noSolidDestructuredProps": "error",
+        "noStringCaseMismatch": "error",
+        "noSwitchDeclarations": "error",
+        "noUndeclaredDependencies": "error",
+        "noUndeclaredVariables": "error",
+        "noUnknownFunction": "error",
+        "noUnreachable": "error",
+        "noUnreachableSuper": "error",
+        "noUnsafeFinally": "error",
+        "noUnsafeOptionalChaining": "error",
+        "noUnusedImports": "error",
+        "noUnusedPrivateClassMembers": "error",
+        "noUnusedVariables": "error",
+        "noVoidTypeReturn": "warn",
+        "useImportExtensions": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "forceJsExtensions": true
+          }
+        },
+        "useIsNan": "error",
+        "useJsonImportAttributes": "warn",
+        "useParseIntRadix": "warn",
+        "useSingleJsDocAsterisk": "warn",
+        "useValidForDirection": "warn",
+        "useValidTypeof": "error",
+        "useYield": "error"
+      },
+      // Nursery Rules have performance issues according to official biomejs docs.
+      // https://biomejs.dev/linter/#nursery
+      // "nursery": "off",
+      "performance": {
+        "noAccumulatingSpread": "error",
+        "noAwaitInLoops": "error",
+        "noBarrelFile": "warn",
+        "noDelete": "error",
+        "noDynamicNamespaceImportAccess": "warn",
+        "noNamespaceImport": "error",
+        "noReExportAll": "warn",
+        "noUnwantedPolyfillio": "warn",
+        "useTopLevelRegex": "error"
+      },
+      "security": {
+        "noGlobalEval": "error",
+        "noSecrets": "error"
+      },
+      "style": {
+        "noCommonJs": "error",
+        "noDefaultExport": "error",
+        "noDescendingSpecificity": "error",
+        "noDoneCallback": "error",
+        "noEnum": "error",
+        "noExportedImports": "warn",
+        "noInferrableTypes": "warn",
+        "noMagicNumbers": "error",
+        "noNamespace": "warn",
+        "noNegationElse": "error",
+        "noNestedTernary": "error",
+        "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
+        "noParameterProperties": "error",
+        "noProcessEnv": "error",
+        "noRestrictedGlobals": {
+          "level": "warn",
+          "options": {
+            "deniedGlobals": {
+              "$": "An example - Obviously jQuery is disgusting."
+            }
+          }
+        },
+        // "noRestrictedImports": {
+        // "level": "error",
+        // Something like react-18n-next
+        // }
+        "noShoutyConstants": "error",
+        "noSubstr": "warn",
+        "noUnusedTemplateLiteral": "error",
+        "noUselessElse": "error",
+        "noYodaExpression": "error",
+        "useArrayLiterals": "error",
+        "useAsConstAssertion": "error",
+        "useAtIndex": "error",
+        "useBlockStatements": "error",
+        "useCollapsedElseIf": "error",
+        "useCollapsedIf": "error",
+        "useComponentExportOnlyModules": "error",
+        "useConsistentArrayType": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useConsistentMemberAccessibility": {
+          "level": "error",
+          "options": {
+            "accessibility": "noPublic"
+          }
+        },
+        "useConsistentObjectDefinitions": "error",
+        "useConsistentTypeDefinitions": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "style": "interface"
+          }
+        },
+        "useConst": "error",
+        "useDefaultParameterLast": "error",
+        "useDefaultSwitchClause": "error",
+        "useDeprecatedReason": "error",
+        // "useEnumInitializers": "error", -> not using enums
+        "useExplicitLengthCheck": "error",
+        "useExponentiationOperator": "error",
+        "useExportsLast": "error",
+        "useExportType": "error",
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case"],
+            "strictCase": true
+          }
+        },
+        "useForOf": "error",
+        "useImportType": "error",
+        // "useLiteralEnumMembers": "error", -> not using enums
+        "useNamingConvention": "error",
+        "useNodeAssertStrict": "error",
+        // This can be tuned a little more
+        // "useNamingConvention": {
+        //   "level": "error",
+        //   }
+        // },
+        "useNumberNamespace": "error",
+        "useNumericSeparators": "error",
+        "useObjectSpread": "error",
+        "useShorthandAssign": "error",
+        "useShorthandFunctionType": "error",
+        "useSingleVarDeclarator": "error",
+        "useSymbolDescription": "error",
+        "useTemplate": "error",
+        "useThrowNewError": "error",
+        "useThrowOnlyError": "error",
+        "useTrimStartEnd": "error",
+        "useUnifiedTypeSignatures": "error"
+      },
+      "suspicious": {
+        "noApproximativeNumericConstant": "error",
+        "noAssignInExpressions": "error",
+        "noAsyncPromiseExecutor": "error",
+        "noBiomeFirstException": "warn",
+        "noBitwiseOperators": "warn",
+        "noCatchAssign": "error",
+        "noClassAssign": "error",
+        "noCommentText": "error",
+        "noCompareNegZero": "error",
+        "noConfusingLabels": "error",
+        "noConfusingVoidType": "error",
+        "noConsole": "error",
+        "noConstantBinaryExpressions": "error",
+        "noConstEnum": "error",
+        "noControlCharactersInRegex": "warn",
+        "noDebugger": "error",
+        "noDoubleEquals": "error",
+        "noDuplicateCase": "error",
+        "noDuplicateClassMembers": "error",
+        "noDuplicateCustomProperties": "error",
+        "noDuplicateElseIf": "error",
+        "noDuplicateObjectKeys": "error",
+        "noDuplicateParameters": "error",
+        "noDuplicateProperties": "error",
+        "noEmptyBlockStatements": "error",
+        "noEmptyInterface": "error",
+        "noEvolvingTypes": "error",
+        "noExplicitAny": "error",
+        "noExportsInTest": "error",
+        "noExtraNonNullAssertion": "error",
+        "noFallthroughSwitchClause": "error",
+        "noFocusedTests": "error",
+        "noFunctionAssign": "error",
+        "noGlobalAssign": "error",
+        "noGlobalIsFinite": "error",
+        "noGlobalIsNan": "error",
+        "noImplicitAnyLet": "error",
+        "noImportAssign": "warn",
+        "noIrregularWhitespace": "error",
+        "noLabelVar": "error",
+        "noMisleadingCharacterClass": "error",
+        "noMisleadingInstantiator": "error",
+        "noMisplacedAssertion": "error",
+        "noMisrefactoredShorthandAssign": "error",
+        "noNonNullAssertedOptionalChain": "error",
+        "noOctalEscape": "error",
+        "noPrototypeBuiltins": "warn",
+        "noQuickfixBiome": "warn",
+        "noRedeclare": "error",
+        "noRedundantUseStrict": "error",
+        // Who uses strict directive anymore?
+        // "noRedundantUseStrict": "error"
+        "noSelfCompare": "error",
+        "noShadowRestrictedNames": "error",
+        "noShorthandPropertyOverrides": "error",
+        "noSkippedTests": "error",
+        "noSparseArray": "error",
+        "noSuspiciousSemicolonInJsx": "error",
+        "noTemplateCurlyInString": "error",
+        "noThenProperty": "error",
+        "noTsIgnore": "error",
+        "noUnassignedVariables": "error",
+        "noUnsafeDeclarationMerging": "warn",
+        "noUnsafeNegation": "error",
+        "noUselessEscapeInString": "error",
+        "noUselessRegexBackrefs": "error",
+        "noVar": "error",
+        "noWith": "error",
+        "useAdjacentOverloadSignatures": "error",
+        "useAwait": "error",
+        "useBiomeIgnoreFolder": "warn",
+        "useDefaultSwitchClauseLast": "error",
+        "useErrorMessage": "warn",
+        "useGetterReturn": "error",
+        "useGuardForIn": "error",
+        "useIsArray": "error",
+        "useIterableCallbackReturn": "error",
+        "useNamespaceKeyword": "error",
+        "useNumberToFixedDigitsArgument": "error",
+        // "useStaticResponseMethods": "error"
+        "useStrictMode": "error"
+      }
+    }
+  },
+  "root": false
 }

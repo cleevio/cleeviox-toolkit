@@ -1,0 +1,5 @@
+{
+  "exclude": ["node_modules"],
+  "extends": "@cleeviox/tsconfig",
+  "include": ["./*.js", "./*.ts"]
+}

@@ -42,7 +42,7 @@ Suitable for React SPAs.
 
 ```json
 {
-  "extends": "@cleevio/tsconfig/app",
+  "extends": "@cleeviox/tsconfig/app",
   "include": ["**/*.js", "**/*.ts", "**/*.tsx"],
   "exclude": ["build", "node_modules"]
 }

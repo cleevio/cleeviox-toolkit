@@ -1,17 +1,17 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
-	"extends": ["./react.jsonc"],
-	"linter": {
-		"rules": {
-			"performance": {
-				"noImgElement": "error",
-				"useGoogleFontPreconnect": "warn"
-			},
-			"suspicious": {
-				"noDocumentImportInPage": "error",
-				"noHeadImportInDocument": "error"
-			}
-		}
-	},
-	"root": false
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "extends": ["./react.jsonc"],
+  "linter": {
+    "rules": {
+      "performance": {
+        "noImgElement": "error",
+        "useGoogleFontPreconnect": "warn"
+      },
+      "suspicious": {
+        "noDocumentImportInPage": "error",
+        "noHeadImportInDocument": "error"
+      }
+    }
+  },
+  "root": false
 }

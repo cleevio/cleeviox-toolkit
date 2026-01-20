@@ -29,7 +29,7 @@
     "url": "https://github.com/cleevio/cleeviox-toolkit"
   },
   "scripts": {
-    "clean": "del .eslintcache .turbo node_modules",
+    "clean": "del .turbo node_modules",
     "fix": "run-s biome:check:fix",
     "format": "biome format .",
     "format:fix": "biome format --write .",

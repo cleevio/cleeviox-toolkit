@@ -1,0 +1,60 @@
+name: CodeQuality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Build packages
+        run: bun run build
+  commitlint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Run commitlint
+        run: bun commitlint --from=${{ github.sha }}
+  manypkg:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Run manypkg
+        run: bun manypkg check
+  check:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Check
+        run: bun run check
+  tsc:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Run tsc
+        run: bun run ts

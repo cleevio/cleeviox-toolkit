@@ -1,0 +1,23 @@
+name: Setup
+description: Setup monorepo for CI
+
+runs:
+  using: composite
+  steps:
+    - name: Setup bun
+      uses: oven-sh/setup-bun@v2
+    - name: Setup node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: 24
+    - name: Cache
+      uses: actions/cache@v4
+      with:
+        key: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
+        path: |
+          ./*
+          !./**/.env
+          !./.github/**/*
+    - name: Install dependencies
+      run: bun install --frozen-lockfile
+      shell: bash

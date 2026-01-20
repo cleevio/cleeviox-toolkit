@@ -2,6 +2,7 @@
 
 <a href="https://github.com/cleevio/cleeviox-toolkit">
 <img alt="CleevioX Logo" src="../../public/logo.svg" width="308"  style="background-color: #151a1d; padding: 15px" />
+</a>
 
 # TSCONFIG
 
@@ -12,7 +13,7 @@
 ## 👷 Installation
 
 ```bash
-pnpm add --save-dev @cleeviox/tsconfig typescript
+bun add --dev @cleeviox/tsconfig typescript
 ```
 
 In a monorepo, install the package in the root, then create configs in each workspace.

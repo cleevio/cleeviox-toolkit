@@ -1,40 +1,72 @@
 <div align="center">
 
 <a href="https://github.com/cleevio/cleeviox-toolkit">
-<img alt="CleevioX Logo" src="../../public/logo.svg" width="308"  style="background-color: #151a1d; padding: 15px" />
+<img alt="CleevioX Logo" src="../../public/logo.svg" width="308" style="background-color: #151a1d; padding: 15px" />
+</a>
 
 # LINT-STAGED
 
-### Lint-staged config for cleeviox projects
+### Lint-staged configurations for CleevioX projects
 
 </div>
 
 ## 👷 Installation
 
 ```bash
-pnpm add --save-dev @cleevio/lint-staged lint-staged
+bun add --dev @cleeviox/lint-staged lint-staged
 ```
 
 ## 🧠 Usage
 
-### Monorepos
+### Monorepo Root
 
 Install the package with `lint-staged` and create a `lint-staged.config.js` file in the root of your monorepo:
 
 ```js
-export { root as default } from '@cleevio/lint-staged';
+import { projectRoot } from '@cleeviox/lint-staged';
+
+export default {
+  ...projectRoot,
+};
 ```
 
-Then, create a `lint-staged.config.js` file in each workspace:
+### Monorepo Workspaces
+
+Create a `lint-staged.config.js` file in each workspace:
 
 ```js
-export { workspace as default } from '@cleevio/lint-staged';
+import { workspace } from '@cleeviox/lint-staged';
+
+export default {
+  ...workspace,
+};
 ```
 
-### Single-package repos
+### Single-Package Repos
 
-Install the package and create a `lint-staged.config.js` file in the root of your project:
+For standalone projects, create a `lint-staged.config.js` file in the root:
 
 ```js
-export { singlePackage as default } from '@cleevio/lint-staged';
+import { basicProject } from '@cleeviox/lint-staged';
+
+export default {
+  ...basicProject,
+};
+```
+
+## Available Configurations
+
+| Export | Description |
+|--------|-------------|
+| `projectRoot` | Configuration for monorepo root with special file handling |
+| `workspace` | Configuration for monorepo workspaces |
+| `basicProject` | Configuration for single-package repositories |
+
+## Integration with Husky
+
+Add lint-staged to your pre-commit hook:
+
+```bash
+# .husky/pre-commit
+bun lint-staged
 ```

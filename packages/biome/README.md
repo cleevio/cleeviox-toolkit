@@ -13,7 +13,7 @@
 ## 👷 Installation
 
 ```bash
-pnpm add --save-dev @cleevio/biome @biomejs/biome
+bun add --dev @cleeviox/biome @biomejs/biome
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ Suitable for general TypeScript projects.
 ```json
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["./node_modules/@cleevio/biome/base.json"]
+  "extends": ["./node_modules/@cleeviox/biome/base.json"]
 }
 ```
 
@@ -38,7 +38,7 @@ For React (JSX) projects.
 ```json
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["./node_modules/@cleevio/biome/react.json"]
+  "extends": ["./node_modules/@cleeviox/biome/react.json"]
 }
 ```
 
@@ -49,7 +49,7 @@ For Next.js projects (extends React configuration).
 ```json
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["./node_modules/@cleevio/biome/nextjs.json"]
+  "extends": ["./node_modules/@cleeviox/biome/nextjs.json"]
 }
 ```
 
@@ -60,7 +60,7 @@ For NestJS projects.
 ```json
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["./node_modules/@cleevio/biome/nestjs.json"]
+  "extends": ["./node_modules/@cleeviox/biome/nestjs.json"]
 }
 ```
 
@@ -70,16 +70,16 @@ After setting up your configuration, you can run Biome commands:
 
 ```bash
 # Check code
-pnpm biome check .
+bun biome check .
 
 # Format code
-pnpm biome format --write .
+bun biome format --write .
 
 # Lint code
-pnpm biome lint .
+bun biome lint .
 
 # Fix issues
-pnpm biome check --write .
+bun biome check --write .
 ```
 
 ## Setup With IDE

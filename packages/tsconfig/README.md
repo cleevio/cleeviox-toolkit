@@ -1,12 +1,14 @@
 <div align="center">
 
 <a href="https://github.com/cleevio/cleeviox-toolkit">
-<img alt="CleevioX Logo" src="../../public/logo.svg" width="308"  style="background-color: #151a1d; padding: 15px" />
+<img alt="CleevioX Logo" src="./public/logo.svg" width="308" style="background-color: #151a1d; padding: 15px" />
 </a>
 
 # TSCONFIG
 
-### Typescript utilities for Cleeviox projects
+[![NPM Version](https://img.shields.io/npm/v/%40cleeviox%2Ftsconfig)](https://www.npmjs.com/package/@cleeviox/tsconfig)
+
+### TypeScript configuration used on CleevioX projects
 
 </div>
 

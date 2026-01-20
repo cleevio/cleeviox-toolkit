@@ -1,5 +1,5 @@
 {
-  "description": "Lint-staged config",
+  "description": "Lint-staged configuration used on CleevioX projects",
   "devDependencies": {
     "lint-staged": "^16.2.7"
   },
@@ -11,6 +11,14 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "lint-staged",
+    "pre-commit",
+    "husky",
+    "config",
+    "cleevio",
+    "cleeviox"
   ],
   "name": "@cleeviox/lint-staged",
   "peerDependencies": {

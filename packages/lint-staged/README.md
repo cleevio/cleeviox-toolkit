@@ -1,8 +1,8 @@
 <div align="center">
 
-<!-- <a href="https://github.com/cleevio/cleeviox-toolkit">
-<img alt="CleevioX Logo" src="https://cdn.prod.website-files.com/673a5bd2bc85b7eb95ca2680/675014f89c10e31bea648179_Logo%20Space.svg" width="308" style="background-color: #151a1d; padding: 15px" />
-</a> -->
+<a href="https://github.com/cleevio/cleeviox-toolkit">
+<img alt="CleevioX Logo" src="https://media.licdn.com/dms/image/v2/D4E0BAQGEw-d0KstvqA/company-logo_200_200/company-logo_200_200/0/1739267861557/cleeviox_logo?e=1770249600&v=beta&t=8t9CF4oPTbILP9z4SBOcq0AIY8UcV5baTp3sTxHJew8" width="120" style="background-color: #151a1d; padding: 15px" />
+</a>
 
 # LINT-STAGED
 

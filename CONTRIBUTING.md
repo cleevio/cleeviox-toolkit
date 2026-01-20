@@ -174,6 +174,34 @@ chore(deps): bump typescript to 5.9.3
 - Write clear, descriptive variable and function names
 - Add JSDoc comments for public APIs
 
+## Branch Protection
+
+The `main` branch is protected with the following rules:
+
+### Required for Merge
+
+- Pull request required (no direct pushes)
+- At least 1 approval from a code owner
+- Stale approvals dismissed on new commits
+- All conversations must be resolved
+- All status checks must pass:
+  - `CI / build`
+  - `CI / check`
+  - `CI / typecheck`
+  - `CI / commitlint`
+  - `CI / manypkg`
+- Branch must be up to date with `main`
+- Linear history required (squash or rebase)
+
+### What This Means for Contributors
+
+1. Always create a feature branch - you cannot push directly to `main`
+2. Your PR needs at least one approval before merging
+3. If you push new commits after approval, re-approval is required
+4. All CI checks must pass - run `bun run build && bun run check && bun run ts` locally first
+5. Resolve all review comments before merging
+6. Keep your branch up to date with `main` to avoid merge conflicts
+
 ## Questions?
 
 If you have questions or need help, feel free to open an issue on GitHub.

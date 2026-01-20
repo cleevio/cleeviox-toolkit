@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": true,
+    "plugins": [{ "name": "next" }],
+    "target": "es2017"
+  },
+  "extends": "./app.json"
+}

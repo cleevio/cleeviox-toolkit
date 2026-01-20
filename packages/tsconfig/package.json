@@ -1,0 +1,42 @@
+{
+  "description": "Typescript configurations",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": "./base.json",
+    "./app": "./app.json",
+    "./library": "./library.json",
+    "./nestjs": "./nestjs.json",
+    "./nextjs": "./nextjs.json",
+    "./nodejs": "./nodejs.json"
+  },
+  "files": [
+    "app.json",
+    "base.json",
+    "library.json",
+    "nestjs.json",
+    "nextjs.json",
+    "nodejs.json"
+  ],
+  "name": "@cleeviox/tsconfig",
+  "peerDependencies": {
+    "typescript": "^5.9.0"
+  },
+  "repository": {
+    "directory": "packages/tsconfig",
+    "type": "git",
+    "url": "https://github.com/cleevio/cleeviox-toolkit"
+  },
+  "scripts": {
+    "clean": "del .eslintcache .turbo node_modules",
+    "fix": "run-s biome:check:fix",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write ."
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.0.0"
+}

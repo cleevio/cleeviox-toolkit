@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://github.com/cleevio/cleeviox-toolkit">
-<img alt="CleevioX Logo" src="./public/logo.svg" width="308" style="background-color: #151a1d; padding: 15px" />
+<img alt="CleevioX Logo" src="https://cdn.prod.website-files.com/673a5bd2bc85b7eb95ca2680/675014f89c10e31bea648179_Logo%20Space.svg" width="308" style="background-color: #151a1d; padding: 15px" />
 </a>
 
 # LINT-STAGED

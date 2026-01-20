@@ -12,15 +12,12 @@ on:
         default: false
         type: boolean
 
-env:
-  CACHE_KEY: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
-  CACHE_PATH: ./*
-
 jobs:
   release:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     name: release:${{ inputs.stable == true && 'stable' || 'snapshot' }}
     steps:
       - name: Checkout

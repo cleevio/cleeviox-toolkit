@@ -1,4 +1,7 @@
 {
+  "bugs": {
+    "url": "https://github.com/cleevio/cleeviox-toolkit/issues"
+  },
   "description": "TypeScript configuration used on CleevioX projects",
   "devDependencies": {
     "typescript": "^5.9.3"

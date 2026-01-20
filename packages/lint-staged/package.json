@@ -1,4 +1,7 @@
 {
+  "bugs": {
+    "url": "https://github.com/cleevio/cleeviox-toolkit/issues"
+  },
   "description": "Lint-staged configuration used on CleevioX projects",
   "devDependencies": {
     "lint-staged": "^16.2.7"

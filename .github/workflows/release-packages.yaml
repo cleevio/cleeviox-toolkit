@@ -29,8 +29,8 @@ jobs:
         uses: ./.github/actions/setup
       - name: Build
         run: bun run build
-      - name: Setup github registry
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> "$HOME/.npmrc"
+      - name: Setup npm registry
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> "$HOME/.npmrc"
       - name: Snapshot release
         if: inputs.stable == false
         run: |

@@ -8,7 +8,13 @@
 
 ### Shared configurations and tools for CleevioX projects
 
+<!-- #### Technologies -->
+
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![Node.js](https://img.shields.io/badge/node-%3E%3D24.0.0-brightgreen.svg)](https://nodejs.org/) [![Bun](https://img.shields.io/badge/bun-1.3.6-f472b6.svg)](https://bun.sh/)
+
+<!-- #### Pipeline Status -->
+
+[![QA](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/qa.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/qa.yaml) [![Test](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/test.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/test.yaml)[![Release](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release.yaml)
 
 </div>
 

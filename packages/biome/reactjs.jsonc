@@ -1,0 +1,76 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
+	"extends": ["./base.jsonc"],
+	"linter": {
+		"rules": {
+			"a11y": "on",
+			"complexity": {
+				"noImportantStyles": "error",
+				"noUselessFragments": "error"
+			},
+			"correctness": {
+				"noChildrenProp": "error",
+				"noInvalidDirectionInLinearGradient": "error",
+				"noInvalidGridAreas": "error",
+				"noInvalidPositionAtImportRule": "error",
+				"noMissingVarFunction": "error",
+				"noNestedComponentDefinitions": "error",
+				"noQwikUseVisibleTask": "error",
+				"noReactPropAssignments": "error",
+				"noRenderReturnValue": "error",
+				"noUnknownMediaFeatureName": "error",
+				"noUnknownProperty": "error",
+				"noUnknownPseudoClass": "error",
+				"noUnknownPseudoElement": "error",
+				"noUnknownTypeSelector": "error",
+				"noUnknownUnit": "error",
+				"noUnmatchableAnbSelector": "error",
+				"noVoidElementsWithChildren": "error",
+				"useExhaustiveDependencies": "error",
+				"useHookAtTopLevel": "error",
+				"useImageSize": "error",
+
+				"useJsxKeyInIterable": "error",
+				"useQwikClasslist": "error",
+				"useUniqueElementIds": "error"
+			},
+			"security": {
+				"noBlankTarget": "error",
+				"noDangerouslySetInnerHtml": "error",
+				"noDangerouslySetInnerHtmlWithChildren": "error"
+			},
+			"style": {
+				"noDescendingSpecificity": "error",
+				"noHeadElement": "error",
+				"noImplicitBoolean": "error",
+				"noValueAtRule": "error",
+				"useConsistentCurlyBraces": "error",
+				"useFragmentSyntax": "error",
+				"useReactFunctionComponents": "error",
+				"useSelfClosingElements": "error"
+			},
+			"suspicious": {
+				"noAlert": "error",
+				"noArrayIndexKey": "warn",
+				"noCommentText": "error",
+				"noDocumentCookie": "error",
+				"noDuplicateAtImportRules": "error",
+				"noDuplicateFontNames": "error",
+				"noDuplicateJsxProps": "error",
+				"noDuplicateSelectorsKeyframeBlock": "error",
+				"noDuplicateTestHooks": "error",
+				"noEmptyBlock": "error",
+				"noImportantInKeyframe": "error",
+				"noReactSpecificProps": "error",
+				"noUnknownAtRules": "error",
+				"useGoogleFontDisplay": "error"
+			}
+		}
+	},
+	"root": false
+}

@@ -1,21 +1,114 @@
 {
-  "$schema": "https://turborepo.dev/schema.json",
-  "ui": "tui",
-  "tasks": {
-    "build": {
+	"$schema": "https://turborepo.org/schema.json",
+	"tasks": {
+		"//#fix:root": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+    "//#check:root": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+			"outputs": []
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "check-types": {
-      "dependsOn": ["^check-types"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    }
-  }
+		"//#format:root": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"//#format:root:fix": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"//#lint:root": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"//#lint:root:fix": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"//#sync-project-references": {
+			"dependsOn": ["^build"],
+			"inputs": ["packages/*/package.json"],
+			"outputs": ["packages/*/tsconfig.json", "packages/*/tsconfig.build.json"]
+		},
+		"//#ts:root": {
+			"dependsOn": ["^build"],
+			"outputs": ["tsconfig.tsbuildinfo"]
+		},
+		"biome:check": {
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"biome:check:fix": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"biome:format": {
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"biome:format:fix": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"biome:lint": {
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"biome:lint:fix": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**/*", "tsconfig.build.tsbuildinfo"]
+		},
+		"clean": {
+			"cache": false
+		},
+		"docs": {
+			"dependsOn": ["^build"],
+			"outputs": ["docs/**/*"]
+		},
+		"fix": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"format": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"format:fix": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"lint": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"lint:fix": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+			"outputs": []
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"test:coverage": {
+			"dependsOn": ["^build"],
+			"outputs": ["coverage/**/*"]
+		},
+		"ts": {
+			"dependsOn": ["^build"],
+			"outputs": ["tsconfig.tsbuildinfo"]
+		}
+	},
+	"ui": "stream"
 }

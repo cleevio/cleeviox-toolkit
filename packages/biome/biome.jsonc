@@ -1,0 +1,23 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+	"extends": ["./base.jsonc"],
+	"overrides": [
+		{
+			"includes": ["**/lint-staged.config.js"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUndeclaredDependencies": "off"
+					},
+					"performance": {
+						"noBarrelFile": "off"
+					},
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		}
+	],
+	"root": false
+}

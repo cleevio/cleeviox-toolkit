@@ -1,24 +1,72 @@
 {
-  "name": "cleeviox-toolkit",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+  "author": "Lukas Riha <lukas.riha94@seznam.cz>",
+  "contributors": [
+    "Lukas Riha <lukas.riha94@seznam.cz>"
+  ],
+  "dependencies": {
+    "is-ci": "^4.1.0",
+    "npm-run-all2": "^8.0.4"
   },
+  "description": "Toolkit repo, which serves as a POC for our @cleeviox toolkit package.",
   "devDependencies": {
-    "prettier": "^3.7.4",
-    "turbo": "^2.7.5",
-    "typescript": "5.9.2"
+    "@biomejs/biome": "^2.3.11",
+    "@changesets/cli": "^2.29.7",
+    "@cleeviox/biome": "workspace:*",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/types": "^20.3.1",
+    "@manypkg/cli": "^0.25.1",
+    "@types/node": "^25.0.9",
+    "del-cli": "^7.0.0",
+    "husky": "^9.1.7",
+    "husky-check-email": "^0.0.8",
+    "lint-staged": "^16.2.4",
+    "turbo": "^2.5.8",
+    "typescript": "^5.9.3"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=24.0.0"
   },
+  "license": "MIT",
+  "manypkg": {
+    "ignoredRules": [
+      "ROOT_HAS_PROD_DEPENDENCIES"
+    ]
+  },
+  "name": "toolkit",
   "packageManager": "bun@1.3.6",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cleevio/cleeviox-toolkit"
+  },
+  "scripts": {
+    "build": "turbo run build --no-daemon",
+    "clean": "turbo run clean --no-daemon",
+    "fix": "turbo run fix fix:root --no-daemon",
+    "fix:root": "run-s biome:check:fix && run-p ts",
+    "format": "turbo run format format:root --no-daemon --parallel",
+    "format:fix": "turbo run format:fix format:root:fix --no-daemon --parallel",
+    "format:root": "biome format .",
+    "format:root:fix": "biome format --write .",
+    "lint": "turbo run lint lint:root --no-daemon",
+    "lint:fix": "turbo run lint:fix lint:root:fix --no-daemon",
+    "lint:root": "biome lint .",
+    "lint:root:fix": "biome lint --write .",
+    "manypkg:fix": "bun manypkg fix",
+    "postclean": "del-cli .turbo tsconfig.tsbuildinfo node_modules",
+    "postinstall": "is-ci || run-s postinstall:check postinstall:husky",
+    "postinstall:check": "manypkg check",
+    "postinstall:husky": "husky",
+    "prepare": "is-ci || run-s build",
+    "test": "turbo run test --no-daemon",
+    "test:coverage": "turbo run test:coverage --no-daemon",
+    "ts": "turbo run ts ts:root --no-daemon",
+    "ts:root": "tsc --project tsconfig.json"
+  },
+  "type": "module",
+  "version": "0.0.0",
   "workspaces": [
-    "apps/*",
     "packages/*"
   ]
 }

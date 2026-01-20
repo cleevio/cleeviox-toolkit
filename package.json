@@ -44,6 +44,8 @@
   },
   "scripts": {
     "build": "turbo run build --no-daemon",
+    "check": "biome check",
+    "check:root": "biome check --write",
     "clean": "turbo run clean --no-daemon",
     "fix": "turbo run fix fix:root --no-daemon",
     "fix:root": "run-s biome:check:fix && run-p ts",

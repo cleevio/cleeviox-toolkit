@@ -12,47 +12,62 @@
 
 </div>
 
-## 👷 Installation
+## Installation
 
 ```bash
 bun add --dev @cleeviox/lint-staged lint-staged
 ```
 
-## 🧠 Usage
+## Usage
+
+### Standalone Repositories
+
+For simple, non-monorepo project, add the following configuration to your project root by creating a  `lint-staged.config.js` file with the following contents: 
+
+```js
+import { basicProject } from '@cleeviox/lint-staged';
+
+/**
+ * @filename: lint-staged.config.js
+ * @type {import('lint-staged').Configuration}
+ */
+export default {
+  // Additional configuration
+  ...projectRoot,
+}
+```
 
 ### Monorepo Root
 
-Install the package with `lint-staged` and create a `lint-staged.config.js` file in the root of your monorepo:
+If your project is a monorepo, install `lint-staged` and create a `lint-staged.config.js` file in the repository root as such:
 
 ```js
 import { projectRoot } from '@cleeviox/lint-staged';
 
+/**
+ * @filename: lint-staged.config.js
+ * @type {import('lint-staged').Configuration}
+ */
 export default {
+  // Additional configuration
   ...projectRoot,
 };
 ```
 
 ### Monorepo Workspaces
 
-Create a `lint-staged.config.js` file in each workspace:
+Every workspace i.e. every directory inside `apps/` or `packages/` must have its own `lint-staged.config.js` as such:
 
 ```js
 import { workspace } from '@cleeviox/lint-staged';
 
+/**
+ * @filename: lint-staged.config.js
+ * @type {import('lint-staged').Configuration}
+ */
 export default {
-  ...workspace,
-};
-```
-
-### Single-Package Repos
-
-For standalone projects, create a `lint-staged.config.js` file in the root:
-
-```js
-import { basicProject } from '@cleeviox/lint-staged';
-
-export default {
-  ...basicProject,
+  // Additional configuration
+  ...projectRoot,
 };
 ```
 

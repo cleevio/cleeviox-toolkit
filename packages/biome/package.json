@@ -17,6 +17,9 @@
   "peerDependencies": {
     "@biomejs/biome": "^2.3.11"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "directory": "packages/biome",
     "type": "git",

@@ -21,6 +21,9 @@
       "optional": true
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "directory": "packages/lint-staged",
     "type": "git",

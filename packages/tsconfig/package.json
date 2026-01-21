@@ -31,7 +31,7 @@
   ],
   "name": "@cleeviox/tsconfig",
   "peerDependencies": {
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.3"
   },
   "repository": {
     "directory": "packages/tsconfig",

@@ -25,6 +25,7 @@
 | [@cleeviox/biome](./packages/biome/README.md) | Biome configurations for linting and formatting |
 | [@cleeviox/tsconfig](./packages/tsconfig/README.md) | TypeScript configurations for various project types |
 | [@cleeviox/lint-staged](./packages/lint-staged/README.md) | Lint-staged configurations for pre-commit hooks |
+| [@cleeviox/vitest](./packages/vitest/README.md) | Vitest configurations for testing |
 
 ## Getting Started
 

@@ -1,0 +1,49 @@
+name: Changesets Renovate
+
+on:
+  merge_group:
+  pull_request_target:
+    paths:
+      - '**/package.json'
+      - '**/bun.lock'
+      - '.github/**/*.yaml'
+
+permissions:
+  contents: write
+
+jobs:
+  changesets-renovate:
+    if: ${{ github.actor == 'renovate[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Setup project
+        uses: ./.github/actions/setup
+
+      - name: Generate Changeset for Renovate
+        env:
+          SKIP_COMMIT: TRUE
+        run: |
+          CHANGED_PACKAGE_JSONS=$(git diff --name-only "origin/$GITHUB_BASE_REF...HEAD" -- 'package.json' 'packages/*/package.json')
+          WORKSPACE_PACKAGE_JSONS=$(echo "$CHANGED_PACKAGE_JSONS" | grep -v '^package\.json$' || echo "")
+
+          if [ -z "$WORKSPACE_PACKAGE_JSONS" ]; then
+            echo "Only root package.json changed, skipping changeset generation"
+            exit 0
+          fi
+
+          bunx @scaleway/changesets-renovate
+
+      - name: Commit and Push Changeset
+        run: |
+          git config user.name "renovate[bot]"
+          git config user.email "29139614+renovate[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          git add .changeset
+          git commit -m "chore(renovate): add changeset" || echo "No changes to commit"
+          git push

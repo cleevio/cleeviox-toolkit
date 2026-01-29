@@ -32,7 +32,6 @@
       }
     }
   ],
-
   "vcs": {
     "clientKind": "git",
     "enabled": true,

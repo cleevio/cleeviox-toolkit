@@ -1,0 +1,83 @@
+{
+  "bugs": {
+    "url": "https://github.com/cleevio/cleeviox-toolkit/issues"
+  },
+  "dependencies": {
+    "@swc/core": "^1.15.8",
+    "@vitejs/plugin-react": "^5.1.2",
+    "unplugin-swc": "^1.5.9",
+    "vite": "^7.3.1"
+  },
+  "description": "Vitest configuration used on CleevioX projects",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.17",
+    "jsdom": "^27.4.0",
+    "vitest": "^4.0.17"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./base": {
+      "import": "./dist/base.js",
+      "types": "./dist/base.d.ts"
+    },
+    "./coverage": {
+      "import": "./dist/coverage.js",
+      "types": "./dist/coverage.d.ts"
+    },
+    "./jsx": {
+      "import": "./dist/jsx.js",
+      "types": "./dist/jsx.d.ts"
+    },
+    "./nestjs": {
+      "import": "./dist/nestjs.js",
+      "types": "./dist/nestjs.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vitest",
+    "config",
+    "cleevio",
+    "cleeviox"
+  ],
+  "name": "@cleeviox/vitest",
+  "peerDependencies": {
+    "@vitest/coverage-v8": "^4.0.17",
+    "jsdom": "^27.4.0",
+    "vitest": "^4.0.17"
+  },
+  "peerDependenciesMeta": {
+    "@vitest/coverage-v8": {
+      "optional": true
+    },
+    "jsdom": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "directory": "packages/vitest",
+    "type": "git",
+    "url": "https://github.com/cleevio/cleeviox-toolkit"
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json",
+    "check": "biome check --write .",
+    "clean": "del .turbo tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo dist node_modules",
+    "fix": "run-s biome:check:fix ts",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "prebuild": "del dist tsconfig.build.tsbuildinfo",
+    "ts": "tsc --build tsconfig.json"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "version": "0.0.0"
+}

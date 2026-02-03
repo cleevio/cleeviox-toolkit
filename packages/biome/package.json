@@ -7,10 +7,10 @@
     "@biomejs/biome": "^2.3.11"
   },
   "exports": {
-    "./base.json": "./base.jsonc",
-    "./nestjs.json": "./nestjs.jsonc",
-    "./nextjs.json": "./nextjs.jsonc",
-    "./react.json": "./react.jsonc"
+    "./base.jsonc": "./base.jsonc",
+    "./nestjs.jsonc": "./nestjs.jsonc",
+    "./nextjs.jsonc": "./nextjs.jsonc",
+    "./react.jsonc": "./react.jsonc"
   },
   "files": [
     "*.jsonc",

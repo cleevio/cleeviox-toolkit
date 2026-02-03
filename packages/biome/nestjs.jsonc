@@ -7,6 +7,9 @@
         "noStaticOnlyClass": "warn",
         "noThisInStatic": "warn"
       },
+      "correctness": {
+        "noNodejsModules": "off"
+      },
       "style": {
         "useGroupedAccessorPairs": "error",
         "useReadonlyClassProperties": "error"

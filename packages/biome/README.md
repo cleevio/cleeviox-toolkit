@@ -28,7 +28,7 @@ Suitable for general TypeScript projects.
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
   "extends": ["./node_modules/@cleeviox/biome/base.json"]
 }
 ```
@@ -39,7 +39,7 @@ For React (JSX) projects.
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
   "extends": ["./node_modules/@cleeviox/biome/react.json"]
 }
 ```
@@ -50,7 +50,7 @@ For Next.js projects (extends React configuration).
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
   "extends": ["./node_modules/@cleeviox/biome/nextjs.json"]
 }
 ```
@@ -61,7 +61,7 @@ For NestJS projects.
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
   "extends": ["./node_modules/@cleeviox/biome/nestjs.json"]
 }
 ```

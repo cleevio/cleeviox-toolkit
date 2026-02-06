@@ -1,5 +1,11 @@
 # @cleeviox/biome
 
+## 0.2.1
+
+### Patch Changes
+
+- 8f30479: Raise entropy level from default 41 to 60 for secrets detection.
+
 ## 0.2.0
 
 ### Minor Changes

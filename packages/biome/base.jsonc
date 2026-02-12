@@ -112,7 +112,7 @@
         "noProcessGlobal": "error",
         "noSelfAssign": "error",
         "noSetterReturn": "error",
-        "noSolidDestructuredProps": "error",
+        "noSolidDestructuredProps": "off",
         "noStringCaseMismatch": "error",
         "noSwitchDeclarations": "error",
         "noUndeclaredDependencies": "error",

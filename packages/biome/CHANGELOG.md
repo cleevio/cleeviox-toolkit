@@ -1,5 +1,11 @@
 # @cleeviox/biome
 
+## 0.2.2
+
+### Patch Changes
+
+- 78dd539: Disable noSolidDestructuredProps rule.
+
 ## 0.2.1
 
 ### Patch Changes

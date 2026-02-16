@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.0/schema.json",
   "css": {
     "parser": {
       "tailwindDirectives": true
@@ -48,6 +48,7 @@
         "noDescendingSpecificity": "error",
         "noHeadElement": "error",
         "noImplicitBoolean": "error",
+        "noJsxLiterals": "error",
         "noValueAtRule": "error",
         "useConsistentCurlyBraces": "error",
         "useFragmentSyntax": "error",

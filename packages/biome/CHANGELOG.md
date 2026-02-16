@@ -1,5 +1,11 @@
 # @cleeviox/biome
 
+## 0.2.3
+
+### Patch Changes
+
+- 0b62d30: Use biome version 2.4.0
+
 ## 0.2.2
 
 ### Patch Changes

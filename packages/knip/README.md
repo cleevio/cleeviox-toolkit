@@ -6,6 +6,8 @@
 
 # KNIP
 
+[![NPM Version](https://img.shields.io/npm/v/%40cleeviox%2Fknip)](https://www.npmjs.com/package/@cleeviox/knip)
+
 ### Knip configuration used on CleevioX projects
 
 </div>
@@ -18,44 +20,41 @@ bun add --dev @cleeviox/knip knip
 
 ## Usage
 
-Create a `knip.jsonc` file at the appropriate level and extend one of the provided configurations.
-
 ### Monorepo Root
 
-For the root of a monorepo, use the `root.jsonc` configuration. It sets up workspace-aware entry and project patterns for scripts and packages.
+For a monorepo, create a `knip.ts` file in the repository root:
 
-```jsonc
-{
-  "$schema": "https://unpkg.com/knip@5/schema.json",
-  "extends": ["./node_modules/@cleeviox/knip/root.jsonc"]
-}
+```ts
+import { monorepoRootConfig } from '@cleeviox/knip';
+import type { KnipConfig } from 'knip';
+
+/**
+ * @filename: knip.ts
+ */
+export default {
+  ...monorepoRootConfig,
+} satisfies KnipConfig;
 ```
 
-### Next.js
+### Next.js Projects
 
-For Next.js workspaces, use the `nextjs.jsonc` configuration. It includes sensible entry points for the App Router, middleware, and i18n modules.
+For a Next.js project, create a `knip.ts` file in your project root:
 
-```jsonc
-{
-  "$schema": "https://unpkg.com/knip@5/schema.json",
-  "extends": ["./node_modules/@cleeviox/knip/nextjs.jsonc"]
-}
+```ts
+import { nextjsConfig } from '@cleeviox/knip';
+import type { KnipConfig } from 'knip';
+
+/**
+ * @filename: knip.ts
+ */
+export default {
+  ...nextjsConfig,
+} satisfies KnipConfig;
 ```
 
-## Running Knip
+## Available Configurations
 
-After setting up your configuration, you can run Knip to find unused exports, files, and dependencies:
-
-```bash
-# Check for unused code
-bun knip
-
-# Check and include production-only analysis
-bun knip --production
-```
-
-## Notes
-
-- Knip helps identify dead code, unused dependencies, and missing exports across your project
-- The `nextjs.jsonc` config pre-ignores common false positives such as icon assets and build-time dependencies like `postcss` and `tailwindcss`
-- The `root.jsonc` config is designed for monorepos and should only be used at the repository root; individual workspaces should have their own `knip.jsonc`
+| Export | Description |
+|--------|-------------|
+| `monorepoRootConfig` | Configuration for monorepo roots with workspace support |
+| `nextjsConfig` | Configuration for Next.js projects |

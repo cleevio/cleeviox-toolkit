@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'bun:test';
-import { defineMonorepoRootConfig } from '~/monorepo-root/define-monorepo-root-config.js';
+import { defineConfig } from '~/define-config.js';
 import { baseMonorepoRootConfig } from '~/monorepo-root/monorepo-root.js';
 
-describe('defineMonorepoRootConfig', () => {
+describe('defineConfig (monorepo-root)', () => {
   it('returns the base config when called with no overrides', () => {
-    const result = defineMonorepoRootConfig();
+    const result = defineConfig(baseMonorepoRootConfig);
     expect(result).toMatchObject(baseMonorepoRootConfig);
   });
 
@@ -12,12 +12,12 @@ describe('defineMonorepoRootConfig', () => {
     const customWorkspaces = {
       '.': { entry: 'bin/*.js', project: 'bin/**/*.js' },
     };
-    const result = defineMonorepoRootConfig({ workspaces: customWorkspaces });
+    const result = defineConfig(baseMonorepoRootConfig, { workspaces: customWorkspaces });
     expect(result.workspaces).toEqual(customWorkspaces);
   });
 
   it('merges top-level scalar overrides', () => {
-    const result = defineMonorepoRootConfig({ ignoreExportsUsedInFile: true });
+    const result = defineConfig(baseMonorepoRootConfig, { ignoreExportsUsedInFile: true });
     expect(result.ignoreExportsUsedInFile).toBe(true);
   });
 });

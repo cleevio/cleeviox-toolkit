@@ -12,7 +12,7 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![Node.js](https://img.shields.io/badge/node-%3E%3D24.0.0-brightgreen.svg)](https://nodejs.org/) [![Bun](https://img.shields.io/badge/bun-1.3.6-f472b6.svg)](https://bun.sh/)
 
-[![CI](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/ci.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/ci.yaml) [![Code Quality](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml) [![Release](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml)
+[![Code Quality](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml) [![Tests](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/tests.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/tests.yaml) [![Release](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml)
 
 </div>
 

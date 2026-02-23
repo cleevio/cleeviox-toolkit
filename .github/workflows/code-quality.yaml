@@ -69,6 +69,10 @@ jobs:
         uses: ./.github/actions/setup
       - name: Run tests
         run: bun run test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: packages/knip/coverage/lcov.info
   typecheck:
     needs: build
     runs-on: ubuntu-latest

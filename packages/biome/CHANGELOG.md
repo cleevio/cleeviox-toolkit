@@ -1,5 +1,11 @@
 # @cleeviox/biome
 
+## 0.2.4
+
+### Patch Changes
+
+- 197fb1f: Docs: Fix image link in docs / README.md files.
+
 ## 0.2.3
 
 ### Patch Changes

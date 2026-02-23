@@ -1,5 +1,11 @@
 # @cleeviox/tsconfig
 
+## 0.1.2
+
+### Patch Changes
+
+- 197fb1f: Docs: Fix image link in docs / README.md files.
+
 ## 0.1.1
 
 ### Patch Changes

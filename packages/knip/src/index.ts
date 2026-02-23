@@ -1,3 +1,6 @@
-// biome-ignore lint/performance/noBarrelFile: TODO - This should be overridden in biome.jsonc file of this workspace.
-export { monorepoRootConfig } from './monorepo-root.js';
-export { nextjsConfig } from './nextjs.js';
+export {
+  baseMonorepoRootConfig,
+  defineMonorepoRootConfig,
+} from './monorepo-root/index.js';
+export { baseNextjsConfig, defineNextjsConfig } from './nextjs/index.js';
+export type { KnipConfigObject } from './types/index.js';

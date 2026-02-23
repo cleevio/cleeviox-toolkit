@@ -41,15 +41,22 @@ export default {
 For a Next.js project, create a `knip.ts` file in your project root:
 
 ```ts
-import { nextjsConfig } from '@cleeviox/knip';
-import type { KnipConfig } from 'knip';
+import { defineNextjsConfig } from '@cleeviox/knip';
 
 /**
  * @filename: knip.ts
  */
-export default {
-  ...nextjsConfig,
-} satisfies KnipConfig;
+export default defineNextjsConfig();
+```
+
+To extend the configuration, pass overrides. Array fields like `ignoreDependencies`, `ignore`, and `project` are **merged** with the base config rather than overwritten:
+
+```ts
+import { defineNextjsConfig } from '@cleeviox/knip';
+
+export default defineNextjsConfig({
+  ignoreDependencies: ['tailwindcss'],
+});
 ```
 
 ## Available Configurations
@@ -57,4 +64,4 @@ export default {
 | Export | Description |
 |--------|-------------|
 | `monorepoRootConfig` | Configuration for monorepo roots with workspace support |
-| `nextjsConfig` | Configuration for Next.js projects |
+| `defineNextjsConfig` | Factory function for Next.js projects — merges array fields with base config |

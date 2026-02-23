@@ -65,7 +65,7 @@
     "postinstall:husky": "husky",
     "prepare": "is-ci || run-s build",
     "test": "turbo run test --no-daemon",
-    "test:coverage": "turbo run test:coverage --no-daemon",
+    "test:cov": "turbo run test:cov --no-daemon",
     "ts": "turbo run ts ts:root --no-daemon",
     "ts:root": "tsc --project tsconfig.json"
   },

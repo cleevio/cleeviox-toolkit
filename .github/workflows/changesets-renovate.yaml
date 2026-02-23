@@ -28,7 +28,9 @@ jobs:
       - name: Generate Changeset for Renovate
         env:
           SKIP_COMMIT: TRUE
+        # language=bash
         run: |
+          # Skip if the only package.json file changed is the root one
           CHANGED_PACKAGE_JSONS=$(git diff --name-only "origin/$GITHUB_BASE_REF...HEAD" -- 'package.json' 'packages/*/package.json')
           WORKSPACE_PACKAGE_JSONS=$(echo "$CHANGED_PACKAGE_JSONS" | grep -v '^package\.json$' || echo "")
 
@@ -37,12 +39,14 @@ jobs:
             exit 0
           fi
 
+          # Generate changeset
           bunx @scaleway/changesets-renovate
 
       - name: Commit and Push Changeset
+        # language=bash
         run: |
           git config user.name "renovate[bot]"
-          git config user.email "29139614+renovate[bot]@users.noreply.github.com"
+          git config user.email "12345678+renovate[bot]@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
           git add .changeset
           git commit -m "chore(renovate): add changeset" || echo "No changes to commit"

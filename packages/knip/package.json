@@ -1,0 +1,44 @@
+{
+  "bugs": {
+    "url": "https://github.com/cleevio/cleeviox-toolkit/issues"
+  },
+  "description": "Knip configuration used on CleevioX projects",
+  "devDependencies": {
+    "knip": "^5.85.0"
+  },
+  "exports": {
+    "./nextjs.jsonc": "./nextjs.jsonc",
+    "./root.jsonc": "./root.jsonc"
+  },
+  "files": [
+    "*.jsonc",
+    "!package.json"
+  ],
+  "keywords": [
+    "knip",
+    "config",
+    "cleevio",
+    "cleeviox"
+  ],
+  "name": "@cleeviox/knip",
+  "peerDependencies": {
+    "knip": "^5.85.0"
+  },
+  "repository": {
+    "directory": "packages/knip",
+    "type": "git",
+    "url": "https://github.com/cleevio/cleeviox-toolkit"
+  },
+  "scripts": {
+    "check": "biome check --write .",
+    "clean": "del .turbo node_modules",
+    "fix": "biome:check:fix",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write ."
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.0.0"
+}

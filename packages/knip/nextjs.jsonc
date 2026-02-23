@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "ignore": ["src/assets/components/icons/**"],
+  "ignoreDependencies": ["@changesets/cli", "orval", "postcss", "tailwindcss"],
+  "ignoreExportsUsedInFile": true,
+  "next": {
+    "entry": [
+      "next.config.{js,ts}",
+      "src/app/**/*.{ts,tsx}",
+      "src/middleware.{ts,js}",
+      "src/module/i18n/*.ts"
+    ]
+  },
+  "project": ["src/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}"]
+}

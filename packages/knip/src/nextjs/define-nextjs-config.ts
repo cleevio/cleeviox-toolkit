@@ -1,5 +1,5 @@
+import type { KnipConfigObject } from '../types/index.js';
 import { baseNextjsConfig } from './nextjs.js';
-import type { KnipConfigObject } from './types.js';
 
 export function defineNextjsConfig(overrides?: KnipConfigObject): KnipConfigObject {
   return {

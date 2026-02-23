@@ -1,4 +1,4 @@
-import type { KnipConfigObject } from './types.js';
+import type { KnipConfigObject } from '../types/index.js';
 
 export const baseNextjsConfig = {
   ignore: ['src/assets/components/icons/**'],

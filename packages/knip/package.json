@@ -40,6 +40,9 @@
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "prebuild": "del dist tsconfig.build.tsbuildinfo",
+    "test": "",
+    "test:cov": "",
+    "test:watch": "",
     "ts": "tsc --build tsconfig.json"
   },
   "sideEffects": false,

@@ -1,6 +1,6 @@
-import type { KnipConfig } from 'knip';
+import type { KnipConfigObject } from '../types/index.js';
 
-export const monorepoRootConfig = {
+export const baseMonorepoRootConfig = {
   workspaces: {
     '.': {
       entry: 'scripts/*.js',
@@ -11,4 +11,4 @@ export const monorepoRootConfig = {
       project: '**/*.ts',
     },
   },
-} satisfies KnipConfig;
+} satisfies KnipConfigObject;

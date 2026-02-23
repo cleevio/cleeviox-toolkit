@@ -6,8 +6,6 @@
 
 # KNIP
 
-[![NPM Version](https://img.shields.io/npm/v/%40cleeviox%2Fknip)](https://www.npmjs.com/package/@cleeviox/knip)
-
 ### Knip configuration used on CleevioX projects
 
 </div>

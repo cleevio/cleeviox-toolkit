@@ -7,12 +7,13 @@
     "knip": "^5.85.0"
   },
   "exports": {
-    "./nextjs.jsonc": "./nextjs.jsonc",
-    "./root.jsonc": "./root.jsonc"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "files": [
-    "*.jsonc",
-    "!package.json"
+    "dist"
   ],
   "keywords": [
     "knip",
@@ -30,13 +31,16 @@
     "url": "https://github.com/cleevio/cleeviox-toolkit"
   },
   "scripts": {
+    "build": "tsc --build tsconfig.build.json",
     "check": "biome check --write .",
-    "clean": "del .turbo node_modules",
-    "fix": "biome:check:fix",
+    "clean": "del .turbo tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo dist node_modules",
+    "fix": "run-s biome:check:fix ts",
     "format": "biome format .",
     "format:fix": "biome format --write .",
     "lint": "biome lint .",
-    "lint:fix": "biome lint --write ."
+    "lint:fix": "biome lint --write .",
+    "prebuild": "del dist tsconfig.build.tsbuildinfo",
+    "ts": "tsc --build tsconfig.json"
   },
   "sideEffects": false,
   "type": "module",

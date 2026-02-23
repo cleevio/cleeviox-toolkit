@@ -20,48 +20,51 @@ bun add --dev @cleeviox/knip knip
 
 ## Usage
 
+All configurations are created with `defineConfig(base, overrides?)`. It performs a shallow merge of the base and overrides, while **appending** the `ignore`, `ignoreDependencies`, and `project` arrays rather than overwriting them.
+
 ### Monorepo Root
 
-For a monorepo, create a `knip.ts` file in the repository root:
-
 ```ts
-import { monorepoRootConfig } from '@cleeviox/knip';
-import type { KnipConfig } from 'knip';
+import { defineConfig, baseMonorepoRootConfig } from '@cleeviox/knip';
 
-/**
- * @filename: knip.ts
- */
-export default {
-  ...monorepoRootConfig,
-} satisfies KnipConfig;
+export default defineConfig(baseMonorepoRootConfig);
 ```
 
 ### Next.js Projects
 
-For a Next.js project, create a `knip.ts` file in your project root:
-
 ```ts
-import { defineNextjsConfig } from '@cleeviox/knip';
+import { defineConfig, baseNextjsConfig } from '@cleeviox/knip';
 
-/**
- * @filename: knip.ts
- */
-export default defineNextjsConfig();
+export default defineConfig(baseNextjsConfig);
 ```
 
-To extend the configuration, pass overrides. Array fields like `ignoreDependencies`, `ignore`, and `project` are **merged** with the base config rather than overwritten:
+To extend a base config, pass overrides as the second argument:
 
 ```ts
-import { defineNextjsConfig } from '@cleeviox/knip';
+import { defineConfig, baseNextjsConfig } from '@cleeviox/knip';
 
-export default defineNextjsConfig({
-  ignoreDependencies: ['tailwindcss'],
+export default defineConfig(baseNextjsConfig, {
+  ignoreDependencies: ['my-extra-dep'],
+  ignore: ['src/generated/**'],
 });
 ```
 
-## Available Configurations
+You can also compose a fully custom config without a base:
+
+```ts
+import { defineConfig } from '@cleeviox/knip';
+
+export default defineConfig({
+  project: ['src/**/*.ts'],
+  ignoreDependencies: ['some-dep'],
+});
+```
+
+## Available Exports
 
 | Export | Description |
 |--------|-------------|
-| `monorepoRootConfig` | Configuration for monorepo roots with workspace support |
-| `defineNextjsConfig` | Factory function for Next.js projects — merges array fields with base config |
+| `defineConfig` | Factory function — merges a base config with optional overrides, appending array fields |
+| `baseNextjsConfig` | Base config for Next.js projects |
+| `baseMonorepoRootConfig` | Base config for monorepo roots with workspace support |
+| `KnipConfigObject` | TypeScript type for a knip configuration object |

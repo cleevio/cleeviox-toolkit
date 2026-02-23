@@ -12,7 +12,7 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![Node.js](https://img.shields.io/badge/node-%3E%3D24.0.0-brightgreen.svg)](https://nodejs.org/) [![Bun](https://img.shields.io/badge/bun-1.3.6-f472b6.svg)](https://bun.sh/)
 
-[![CI](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/ci.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/ci.yaml) [![Code Quality](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml) [![Release](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml)
+[![Build](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/build.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/build.yaml) [![Code Quality](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/code-quality.yaml) [![Tests](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/tests.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/tests.yaml) [![Release](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml/badge.svg)](https://github.com/cleevio/cleeviox-toolkit/actions/workflows/release-packages.yaml)
 
 </div>
 
@@ -25,6 +25,8 @@
 | [@cleeviox/biome](./packages/biome/README.md) | Biome configurations for linting and formatting |
 | [@cleeviox/tsconfig](./packages/tsconfig/README.md) | TypeScript configurations for various project types |
 | [@cleeviox/lint-staged](./packages/lint-staged/README.md) | Lint-staged configurations for pre-commit hooks |
+| [@cleeviox/knip](./packages/knip/README.md) | Knip configurations for cleaning up dead code and unused dependencies |
+
 
 ## Getting Started
 

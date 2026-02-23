@@ -34,7 +34,7 @@
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
     "check": "biome check --write .",
-    "clean": "del .turbo tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo dist node_modules",
+    "clean": "del .turbo tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo dist coverage node_modules",
     "fix": "run-s biome:check:fix ts",
     "format": "biome format .",
     "format:fix": "biome format --write .",
@@ -42,7 +42,7 @@
     "lint:fix": "biome lint --write .",
     "prebuild": "del dist tsconfig.build.tsbuildinfo",
     "test": "bun test",
-    "test:cov": "bun test --coverage",
+    "test:cov": "bun test --coverage --coverage-reporter=lcov",
     "test:watch": "bun test --watch",
     "ts": "tsc --build tsconfig.json"
   },

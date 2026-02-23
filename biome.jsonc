@@ -13,7 +13,8 @@
             "noUndeclaredDependencies": "off"
           },
           "performance": {
-            "noBarrelFile": "off"
+            "noBarrelFile": "off",
+            "noReExportAll": "off"
           },
           "style": {
             "noDefaultExport": "off"

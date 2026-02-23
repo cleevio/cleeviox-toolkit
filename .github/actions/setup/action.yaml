@@ -10,14 +10,21 @@ runs:
       uses: actions/setup-node@v6
       with:
         node-version: 24
-    - name: Cache
-      uses: actions/cache@v5
+    # - name: Cache
+    #   uses: actions/cache@v5
+    #   with:
+    #     key: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
+    #     path: |
+    #       ./*
+    #       !./**/.env
+    #       !./.github/**/*
+    - name: Cache turbo build setup
+      uses: actions/cache@v4
       with:
-        key: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
-        path: |
-          ./*
-          !./**/.env
-          !./.github/**/*
+        path: .turbo
+        key: ${{ runner.os }}-turbo-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-
     - name: Install dependencies
       run: bun install --frozen-lockfile
       shell: bash

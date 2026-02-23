@@ -89,3 +89,7 @@ lerna-debug.log*
 # =============================================================================
 .vercel/
 .netlify/
+
+# Turborepo
+.turbo
+.vercel

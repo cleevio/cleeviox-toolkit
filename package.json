@@ -10,7 +10,7 @@
   "description": "Toolkit repo, which serves as a POC for our @cleeviox toolkit package.",
   "devDependencies": {
     "@biomejs/biome": "^2.4.0",
-    "@changesets/cli": "^2.29.7",
+    "@changesets/cli": "^2.29.8",
     "@cleeviox/biome": "workspace:*",
     "@cleeviox/lint-staged": "workspace:*",
     "@cleeviox/tsconfig": "workspace:*",

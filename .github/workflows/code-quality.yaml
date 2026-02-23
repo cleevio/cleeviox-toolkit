@@ -9,18 +9,7 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup
-        uses: ./.github/actions/setup
-      - name: Build packages
-        run: bun run build
   commitlint:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -37,7 +26,6 @@ jobs:
         if: github.event_name == 'pull_request'
         run: bun commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}
   manypkg:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -48,7 +36,6 @@ jobs:
       - name: Run manypkg
         run: bun manypkg check
   check:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -59,7 +46,6 @@ jobs:
       - name: Check
         run: bun run check
   typecheck:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

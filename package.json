@@ -1,7 +1,8 @@
 {
   "author": "Lukas Riha <lukas.riha94@seznam.cz>",
   "contributors": [
-    "Lukas Riha <lukas.riha94@seznam.cz>"
+    "Lukas Riha <lukas.riha94@seznam.cz>",
+    "Lukas Riha <lukas.riha@cleevio.com>"
   ],
   "dependencies": {
     "is-ci": "^4.1.0",

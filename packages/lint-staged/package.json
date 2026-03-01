@@ -44,6 +44,8 @@
     "fix": "run-s biome:check:fix ts",
     "format": "biome format .",
     "format:fix": "biome format --write .",
+    "format:oxfmt": "oxfmt --check",
+    "format:oxfmt:fix": "oxfmt",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "prebuild": "del dist tsconfig.build.tsbuildinfo",

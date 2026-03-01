@@ -38,6 +38,8 @@
     "fix": "biome:check:fix",
     "format": "biome format .",
     "format:fix": "biome format --write .",
+    "format:oxfmt": "oxfmt --check",
+    "format:oxfmt:fix": "oxfmt",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write ."
   },

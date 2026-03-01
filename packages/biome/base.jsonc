@@ -11,9 +11,6 @@
       }
     }
   },
-  // "files": {
-  //   "includes": ["!**/dist/**", "*.ts", "*.js"]
-  // },
   "formatter": {
     "indentStyle": "space",
     "indentWidth": 2,

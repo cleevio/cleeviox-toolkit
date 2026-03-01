@@ -4,7 +4,7 @@
   },
   "description": "Lint-staged configuration used on CleevioX projects",
   "devDependencies": {
-    "lint-staged": "^16.2.7"
+    "lint-staged": "^16.3.1"
   },
   "exports": {
     ".": {
@@ -25,7 +25,7 @@
   ],
   "name": "@cleeviox/lint-staged",
   "peerDependencies": {
-    "lint-staged": "^16.2.7"
+    "lint-staged": "^16.3.1"
   },
   "peerDependenciesMeta": {
     "lint-staged": {

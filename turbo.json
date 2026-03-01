@@ -9,6 +9,14 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "//#format:oxfmt:fix:root": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "//#format:oxfmt:root": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
     "//#format:root": {
       "dependsOn": ["^build"],
       "outputs": []
@@ -87,6 +95,16 @@
       "outputs": []
     },
     "format:fix": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+      "outputs": []
+    },
+    "format:oxfmt": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+      "outputs": []
+    },
+    "format:oxfmt:fix": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
       "outputs": []

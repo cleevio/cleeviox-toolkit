@@ -1,0 +1,47 @@
+{
+  "bugs": {
+    "url": "https://github.com/cleevio/cleeviox-toolkit/issues"
+  },
+  "description": "Oxfmt configuration used on CleevioX projects",
+  "devDependencies": {
+    "oxfmt": "^0.35.0"
+  },
+  "exports": {
+    "./base.jsonc": "./base.jsonc",
+    "./nestjs.jsonc": "./nestjs.jsonc",
+    "./nextjs.jsonc": "./nextjs.jsonc",
+    "./reactjs.jsonc": "./reactjs.jsonc"
+  },
+  "files": [
+    "*.jsonc"
+  ],
+  "keywords": [
+    "oxfmt",
+    "linter",
+    "formatter",
+    "config",
+    "cleevio",
+    "cleeviox"
+  ],
+  "name": "@cleeviox/oxfmt",
+  "peerDependencies": {
+    "oxfmt": "^0.35.0"
+  },
+  "repository": {
+    "directory": "packages/oxfmt",
+    "type": "git",
+    "url": "https://github.com/cleevio/cleeviox-toolkit"
+  },
+  "scripts": {
+    "check": "biome check --write .",
+    "clean": "del .turbo node_modules",
+    "fix": "biome:check:fix",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write ."
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.0.0"
+}

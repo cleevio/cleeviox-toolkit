@@ -24,6 +24,12 @@ export default defineConfig(baseMonorepoRootConfig, {
       entry: ['src/index.ts'],
       ignoreFiles: [],
     },
+    'packages/oxfmt': {
+      ...baseMonorepoRootConfig.workspaces['packages/*'],
+      entry: [],
+      ignoreFiles: [],
+      project: [],
+    },
     'packages/tsconfig': {
       ...baseMonorepoRootConfig.workspaces['packages/*'],
       entry: [],

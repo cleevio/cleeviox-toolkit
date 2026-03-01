@@ -26,6 +26,7 @@
     "husky": "^9.1.7",
     "knip": "^5.85.0",
     "lint-staged": "^16.3.1",
+    "oxfmt": "^0.35.0",
     "turbo": "^2.8.12",
     "typescript": "^5.9.3"
   },
@@ -57,6 +58,9 @@
     "fix:root": "run-s biome:check:fix && run-p ts",
     "format": "turbo run format format:root --no-daemon --parallel",
     "format:fix": "turbo run format:fix format:root:fix --no-daemon --parallel",
+    "format:oxfmt": "turbo run format:oxfmt format:oxfmt:root --no-daemon --parallel",
+    "format:oxfmt:fix": "turbo run format:oxfmt:fix format:oxfmt:root:fix --no-daemon --parallel",
+    "format:oxfmt:root": "oxfmt --check",
     "format:root": "biome format .",
     "format:root:fix": "biome format --write .",
     "knip": "turbo run knip:root --no-daemon",

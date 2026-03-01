@@ -1,5 +1,12 @@
 # @cleeviox/biome
 
+## 0.2.5
+
+### Patch Changes
+
+- 412e044: Updated dependency `@biomejs/biome` to `^2.4.4`.
+- 2973d23: Fix reactjs.jsonc export / extend in biome package.
+
 ## 0.2.4
 
 ### Patch Changes

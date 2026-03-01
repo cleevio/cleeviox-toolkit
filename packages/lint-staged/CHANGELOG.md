@@ -1,5 +1,12 @@
 # @cleeviox/lint-staged
 
+## 0.1.3
+
+### Patch Changes
+
+- 2973d23: Change peerDependency meta of lint-staged from optional: true to false.
+- 994f6f3: Updated dependency `lint-staged` to `^16.3.1`.
+
 ## 0.1.2
 
 ### Patch Changes

@@ -59,9 +59,6 @@
       "peerDependencies": {
         "lint-staged": "^16.3.1",
       },
-      "optionalPeers": [
-        "lint-staged",
-      ],
     },
     "packages/tsconfig": {
       "name": "@cleeviox/tsconfig",

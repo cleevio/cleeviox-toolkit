@@ -18,7 +18,6 @@
       "outputs": []
     },
     "//#knip:root": {
-      "cache": false,
       "dependsOn": ["^build"],
       "outputs": []
     },

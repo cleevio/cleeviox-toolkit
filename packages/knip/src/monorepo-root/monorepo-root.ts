@@ -7,9 +7,8 @@ export const baseMonorepoRootConfig = {
       project: 'scripts/**/*.js',
     },
     'packages/*': {
-      entry: '{index,cli}.ts',
-      ignoreFiles: ['**/*.ts'],
-      project: '**/*.ts',
+      entry: 'src/{index,cli}.ts',
+      project: 'src/*.{ts,tsx}',
     },
   },
 } satisfies KnipConfigObject;

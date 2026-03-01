@@ -59,6 +59,7 @@
     "format:fix": "turbo run format:fix format:root:fix --no-daemon --parallel",
     "format:root": "biome format .",
     "format:root:fix": "biome format --write .",
+    "knip": "turbo run knip:root --no-daemon",
     "knip:root": "knip",
     "lint": "turbo run lint lint:root --no-daemon",
     "lint:fix": "turbo run lint:fix lint:root:fix --no-daemon",

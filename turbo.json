@@ -17,6 +17,11 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "//#knip:root": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
     "//#lint:root": {
       "dependsOn": ["^build"],
       "outputs": []

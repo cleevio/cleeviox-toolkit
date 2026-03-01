@@ -8,6 +8,7 @@ export const baseMonorepoRootConfig = {
     },
     'packages/*': {
       entry: '{index,cli}.ts',
+      ignoreFiles: ['**/*.ts'],
       project: '**/*.ts',
     },
   },

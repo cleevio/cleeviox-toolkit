@@ -10,7 +10,7 @@
     "./base.jsonc": "./base.jsonc",
     "./nestjs.jsonc": "./nestjs.jsonc",
     "./nextjs.jsonc": "./nextjs.jsonc",
-    "./react.jsonc": "./react.jsonc"
+    "./reactjs.jsonc": "./reactjs.jsonc"
   },
   "files": [
     "*.jsonc",

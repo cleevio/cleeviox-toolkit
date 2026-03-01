@@ -6,7 +6,11 @@
   },
   "overrides": [
     {
-      "includes": ["**/lint-staged.config.js", "packages/**/index.ts"],
+      "includes": [
+        "**/lint-staged.config.js",
+        "packages/**/index.ts",
+        "knip.config.ts"
+      ],
       "linter": {
         "rules": {
           "correctness": {

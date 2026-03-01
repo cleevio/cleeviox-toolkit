@@ -17,6 +17,10 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "//#knip:root": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
     "//#lint:root": {
       "dependsOn": ["^build"],
       "outputs": []
@@ -85,6 +89,10 @@
     "format:fix": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "../../biome.json", "biome.json"],
+      "outputs": []
+    },
+    "knip": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "lint": {

@@ -29,7 +29,7 @@
   },
   "peerDependenciesMeta": {
     "lint-staged": {
-      "optional": true
+      "optional": false
     }
   },
   "repository": {

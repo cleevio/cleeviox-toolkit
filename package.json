@@ -39,6 +39,9 @@
     ]
   },
   "name": "toolkit",
+  "overrides": {
+    "ajv": ">=8.18.0"
+  },
   "packageManager": "bun@1.3.6",
   "private": true,
   "repository": {

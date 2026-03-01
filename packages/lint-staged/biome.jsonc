@@ -7,13 +7,13 @@
       "linter": {
         "rules": {
           "performance": {
-            "noBarrelFile": "off"
+            "noBarrelFile": "off",
           },
           "style": {
-            "noDefaultExport": "off"
-          }
-        }
-      }
+            "noDefaultExport": "off",
+          },
+        },
+      },
     },
     {
       "includes": ["./src/index.ts"],
@@ -21,11 +21,11 @@
         "rules": {
           "performance": {
             "noBarrelFile": "off",
-            "noReExportAll": "off"
-          }
-        }
-      }
-    }
+            "noReExportAll": "off",
+          },
+        },
+      },
+    },
   ],
-  "root": false
+  "root": false,
 }

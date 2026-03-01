@@ -22,7 +22,7 @@ bun add --dev @cleeviox/lint-staged lint-staged
 
 ### Standalone Repositories
 
-For simple, non-monorepo project, add the following configuration to your project root by creating a  `lint-staged.config.js` file with the following contents: 
+For simple, non-monorepo project, add the following configuration to your project root by creating a `lint-staged.config.js` file with the following contents:
 
 ```js
 import { basicProject } from '@cleeviox/lint-staged';
@@ -34,7 +34,7 @@ import { basicProject } from '@cleeviox/lint-staged';
 export default {
   // Additional configuration
   ...projectRoot,
-}
+};
 ```
 
 ### Monorepo Root
@@ -73,11 +73,11 @@ export default {
 
 ## Available Configurations
 
-| Export | Description |
-|--------|-------------|
-| `projectRoot` | Configuration for monorepo root with special file handling |
-| `workspace` | Configuration for monorepo workspaces |
-| `basicProject` | Configuration for single-package repositories |
+| Export         | Description                                                |
+| -------------- | ---------------------------------------------------------- |
+| `projectRoot`  | Configuration for monorepo root with special file handling |
+| `workspace`    | Configuration for monorepo workspaces                      |
+| `basicProject` | Configuration for single-package repositories              |
 
 ## Integration with Husky
 

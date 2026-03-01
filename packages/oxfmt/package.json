@@ -8,8 +8,6 @@
   },
   "exports": {
     "./base.jsonc": "./base.jsonc",
-    "./nestjs.jsonc": "./nestjs.jsonc",
-    "./nextjs.jsonc": "./nextjs.jsonc",
     "./reactjs.jsonc": "./reactjs.jsonc"
   },
   "files": [

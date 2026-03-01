@@ -16,12 +16,12 @@
     "dist"
   ],
   "keywords": [
-    "lint-staged",
-    "pre-commit",
-    "husky",
-    "config",
     "cleevio",
-    "cleeviox"
+    "cleeviox",
+    "config",
+    "husky",
+    "lint-staged",
+    "pre-commit"
   ],
   "name": "@cleeviox/lint-staged",
   "peerDependencies": {

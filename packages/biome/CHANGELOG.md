@@ -1,5 +1,12 @@
 # @cleeviox/biome
 
+## 0.2.6
+
+### Patch Changes
+
+- b8c4984: Bump biomejs versions, fix docs
+- b8c4984: Disable noDefaultExport rule for config files.
+
 ## 0.2.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cleeviox/knip
 
+## 0.1.2
+
+### Patch Changes
+
+- b8c4984: Bump biomejs versions, fix docs
+
 ## 0.1.1
 
 ### Patch Changes

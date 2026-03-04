@@ -1,5 +1,11 @@
 # @cleeviox/lint-staged
 
+## 0.1.4
+
+### Patch Changes
+
+- b8c4984: Bump biomejs versions, fix docs
+
 ## 0.1.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cleeviox/tsconfig
 
+## 0.1.3
+
+### Patch Changes
+
+- b8c4984: Bump biomejs versions, fix docs
+
 ## 0.1.2
 
 ### Patch Changes

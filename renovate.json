@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "prConcurrentLimit": 10,
   "rangeStrategy": "bump",
   "schedule": ["at any time"]
 }

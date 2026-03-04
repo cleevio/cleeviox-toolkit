@@ -1,9 +1,13 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.4/schema.json",
   "extends": "//",
   "overrides": [
     {
-      "includes": ["./lint-staged.config.js"],
+      "includes": [
+        "./lint-staged.config.js",
+        "./**/*.config.{js,ts}",
+        "./src/**/index.ts"
+      ],
       "linter": {
         "rules": {
           "performance": {

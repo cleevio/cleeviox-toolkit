@@ -20,7 +20,7 @@
         "@commitlint/types": "^20.4.3",
         "@manypkg/cli": "^0.25.1",
         "@scaleway/changesets-renovate": "^2.2.4",
-        "@types/node": "^25.3.3",
+        "@types/node": "^25.3.5",
         "del-cli": "^7.0.0",
         "husky": "^9.1.7",
         "knip": "^5.85.0",
@@ -31,7 +31,7 @@
     },
     "packages/biome": {
       "name": "@cleeviox/biome",
-      "version": "0.2.5",
+      "version": "0.2.6",
       "devDependencies": {
         "@biomejs/biome": "^2.4.4",
       },
@@ -41,7 +41,7 @@
     },
     "packages/knip": {
       "name": "@cleeviox/knip",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "devDependencies": {
         "@types/bun": "^1.3.9",
         "knip": "^5.85.0",
@@ -52,7 +52,7 @@
     },
     "packages/lint-staged": {
       "name": "@cleeviox/lint-staged",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "devDependencies": {
         "lint-staged": "^16.3.1",
       },
@@ -62,7 +62,7 @@
     },
     "packages/tsconfig": {
       "name": "@cleeviox/tsconfig",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "devDependencies": {
         "typescript": "^5.9.3",
       },
@@ -261,7 +261,7 @@
 
     "@types/js-yaml": ["@types/js-yaml@4.0.9", "", {}, "sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg=="],
 
-    "@types/node": ["@types/node@25.3.3", "", { "dependencies": { "undici-types": "~7.18.0" } }, "sha512-DpzbrH7wIcBaJibpKo9nnSQL0MTRdnWttGyE5haGwK86xgMOkFLp7vEyfQPGLOJh5wNYiJ3V9PmUMDhV9u8kkQ=="],
+    "@types/node": ["@types/node@25.3.5", "", { "dependencies": { "undici-types": "~7.18.0" } }, "sha512-oX8xrhvpiyRCQkG1MFchB09f+cXftgIXb3a7UUa4Y3wpmZPw5tyZGTLWhlESOLq1Rq6oDlc8npVU2/9xiCuXMA=="],
 
     "ajv": ["ajv@8.18.0", "", { "dependencies": { "fast-deep-equal": "^3.1.3", "fast-uri": "^3.0.1", "json-schema-traverse": "^1.0.0", "require-from-string": "^2.0.2" } }, "sha512-PlXPeEWMXMZ7sPYOHqmDyCJzcfNrUr3fGNKtezX14ykXOEIvyK81d+qydx89KY5O71FKMPaQ2vBfBFI5NHR63A=="],
 

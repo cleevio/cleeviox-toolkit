@@ -9,7 +9,7 @@
         "npm-run-all2": "^8.0.4",
       },
       "devDependencies": {
-        "@biomejs/biome": "^2.4.5",
+        "@biomejs/biome": "^2.4.6",
         "@changesets/cli": "^2.30.0",
         "@cleeviox/biome": "workspace:*",
         "@cleeviox/knip": "workspace:*",
@@ -33,10 +33,10 @@
       "name": "@cleeviox/biome",
       "version": "0.2.6",
       "devDependencies": {
-        "@biomejs/biome": "^2.4.5",
+        "@biomejs/biome": "^2.4.6",
       },
       "peerDependencies": {
-        "@biomejs/biome": "^2.4.5",
+        "@biomejs/biome": "^2.4.6",
       },
     },
     "packages/knip": {

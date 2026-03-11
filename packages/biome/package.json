@@ -4,7 +4,7 @@
   },
   "description": "Biome configuration used on CleevioX projects",
   "devDependencies": {
-    "@biomejs/biome": "^2.4.5"
+    "@biomejs/biome": "^2.4.6"
   },
   "exports": {
     "./base.jsonc": "./base.jsonc",
@@ -26,7 +26,7 @@
   ],
   "name": "@cleeviox/biome",
   "peerDependencies": {
-    "@biomejs/biome": "^2.4.5"
+    "@biomejs/biome": "^2.4.6"
   },
   "repository": {
     "directory": "packages/biome",

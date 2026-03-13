@@ -19,7 +19,7 @@
         "@commitlint/config-conventional": "^20.4.4",
         "@commitlint/types": "^20.4.4",
         "@manypkg/cli": "^0.25.1",
-        "@scaleway/changesets-renovate": "^2.2.4",
+        "@scaleway/changesets-renovate": "^2.2.5",
         "@types/node": "^25.5.0",
         "del-cli": "^7.0.0",
         "husky": "^9.1.7",
@@ -251,7 +251,7 @@
 
     "@pnpm/npm-conf": ["@pnpm/npm-conf@3.0.2", "", { "dependencies": { "@pnpm/config.env-replace": "^1.1.0", "@pnpm/network.ca-file": "^1.0.1", "config-chain": "^1.1.11" } }, "sha512-h104Kh26rR8tm+a3Qkc5S4VLYint3FE48as7+/5oCEcKR2idC/pF1G6AhIXKI+eHPJa/3J9i5z0Al47IeGHPkA=="],
 
-    "@scaleway/changesets-renovate": ["@scaleway/changesets-renovate@2.2.4", "", { "dependencies": { "@types/js-yaml": "4.0.9", "fast-glob": "3.3.3", "js-yaml": "4.1.1", "simple-git": "3.30.0" }, "bin": { "changesets-renovate": "dist/cli.js" } }, "sha512-OjlNDHxh5ByvZjVblEbRRJi5iwnWe2f1hGAr2jrKSLUzrYKi8MYfwnftLPYCMewgWe661wCUY69ykBGtiMXHPQ=="],
+    "@scaleway/changesets-renovate": ["@scaleway/changesets-renovate@2.2.5", "", { "dependencies": { "@types/js-yaml": "4.0.9", "fast-glob": "3.3.3", "js-yaml": "4.1.1", "simple-git": "3.33.0" }, "bin": { "changesets-renovate": "dist/cli.js" } }, "sha512-SfrRZ1wFKlwmvPU6jQm91IwOCGsc7V/LrBMBetnXHiPj0/5HTShZmIl2rEBNB069rNow9N4nhLnV/zG/Tj32dA=="],
 
     "@simple-libs/child-process-utils": ["@simple-libs/child-process-utils@1.0.2", "", { "dependencies": { "@simple-libs/stream-utils": "^1.2.0" } }, "sha512-/4R8QKnd/8agJynkNdJmNw2MBxuFTRcNFnE5Sg/G+jkSsV8/UBgULMzhizWWW42p8L5H7flImV2ATi79Ove2Tw=="],
 
@@ -581,7 +581,7 @@
 
     "signal-exit": ["signal-exit@4.1.0", "", {}, "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw=="],
 
-    "simple-git": ["simple-git@3.30.0", "", { "dependencies": { "@kwsites/file-exists": "^1.1.1", "@kwsites/promise-deferred": "^1.1.1", "debug": "^4.4.0" } }, "sha512-q6lxyDsCmEal/MEGhP1aVyQ3oxnagGlBDOVSIB4XUVLl1iZh0Pah6ebC9V4xBap/RfgP2WlI8EKs0WS0rMEJHg=="],
+    "simple-git": ["simple-git@3.33.0", "", { "dependencies": { "@kwsites/file-exists": "^1.1.1", "@kwsites/promise-deferred": "^1.1.1", "debug": "^4.4.0" } }, "sha512-D4V/tGC2sjsoNhoMybKyGoE+v8A60hRawKQ1iFRA1zwuDgGZCBJ4ByOzZ5J8joBbi4Oam0qiPH+GhzmSBwbJng=="],
 
     "slash": ["slash@5.1.0", "", {}, "sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg=="],
 

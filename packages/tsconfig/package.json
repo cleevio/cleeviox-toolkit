@@ -20,7 +20,8 @@
     "library.json",
     "nestjs.json",
     "nextjs.json",
-    "nodejs.json"
+    "nodejs.json",
+    "public/"
   ],
   "keywords": [
     "typescript",

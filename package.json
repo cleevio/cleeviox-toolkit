@@ -10,7 +10,7 @@
   },
   "description": "Toolkit repo, which serves as a POC for our @cleeviox toolkit package.",
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
+    "@biomejs/biome": "^2.4.7",
     "@changesets/cli": "^2.30.0",
     "@cleeviox/biome": "workspace:*",
     "@cleeviox/knip": "workspace:*",

@@ -1,5 +1,11 @@
 # @cleeviox/knip
 
+## 0.1.4
+
+### Patch Changes
+
+- 13d4753: Updated dependency `knip` to `^5.87.0`.
+
 ## 0.1.3
 
 ### Patch Changes

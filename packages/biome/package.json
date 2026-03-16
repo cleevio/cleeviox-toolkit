@@ -14,7 +14,8 @@
   },
   "files": [
     "*.jsonc",
-    "!package.json"
+    "!package.json",
+    "public/"
   ],
   "keywords": [
     "biome",

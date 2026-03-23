@@ -4,7 +4,7 @@
   },
   "description": "TypeScript configuration used on CleevioX projects",
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "exports": {
     ".": "./base.json",
@@ -32,7 +32,7 @@
   ],
   "name": "@cleeviox/tsconfig",
   "peerDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "repository": {
     "directory": "packages/tsconfig",

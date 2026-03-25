@@ -1,5 +1,12 @@
 # @cleeviox/biome
 
+## 0.2.9
+
+### Patch Changes
+
+- e502a27: Updated dependency `@biomejs/biome` to `^2.4.9`.
+- c0e8755: Updated dependency `@biomejs/biome` to `^2.4.8`.
+
 ## 0.2.8
 
 ### Patch Changes

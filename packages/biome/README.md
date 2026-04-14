@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://github.com/cleevio/cleeviox-toolkit">
-<img alt="CleevioX Logo" src="./public/logo.svg" width="250" style="background-color: #151a1d; padding: 15px" />
+<img alt="CleevioX Logo" src="./public/logo.jpeg" width="120" style="background-color: #151a1d; padding: 15px" />
 </a>
 
 # BIOME

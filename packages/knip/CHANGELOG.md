@@ -1,5 +1,15 @@
 # @cleeviox/knip
 
+## 0.2.0
+
+### Minor Changes
+
+- de1963a: Updated dependency `knip` to `^6.0.0`.
+
+### Patch Changes
+
+- cf17451: Updated dependency `@types/bun` to `^1.3.12`.
+
 ## 0.1.5
 
 ### Patch Changes

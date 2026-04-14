@@ -1,5 +1,11 @@
 # @cleeviox/tsconfig
 
+## 0.2.0
+
+### Minor Changes
+
+- 8242f0f: Added support for `typescript` `^6.0.2` in peer dependencies.
+
 ## 0.1.3
 
 ### Patch Changes

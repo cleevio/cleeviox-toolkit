@@ -19,7 +19,7 @@
         "@commitlint/config-conventional": "^20.5.3",
         "@commitlint/types": "^20.5.0",
         "@manypkg/cli": "^0.25.1",
-        "@scaleway/changesets-renovate": "^2.2.5",
+        "@scaleway/changesets-renovate": "^2.2.6",
         "@types/node": "^25.6.0",
         "del-cli": "^7.0.0",
         "husky": "^9.1.7",
@@ -293,7 +293,11 @@
 
     "@pnpm/npm-conf": ["@pnpm/npm-conf@3.0.2", "", { "dependencies": { "@pnpm/config.env-replace": "^1.1.0", "@pnpm/network.ca-file": "^1.0.1", "config-chain": "^1.1.11" } }, "sha512-h104Kh26rR8tm+a3Qkc5S4VLYint3FE48as7+/5oCEcKR2idC/pF1G6AhIXKI+eHPJa/3J9i5z0Al47IeGHPkA=="],
 
-    "@scaleway/changesets-renovate": ["@scaleway/changesets-renovate@2.2.5", "", { "dependencies": { "@types/js-yaml": "4.0.9", "fast-glob": "3.3.3", "js-yaml": "4.1.1", "simple-git": "3.33.0" }, "bin": { "changesets-renovate": "dist/cli.js" } }, "sha512-SfrRZ1wFKlwmvPU6jQm91IwOCGsc7V/LrBMBetnXHiPj0/5HTShZmIl2rEBNB069rNow9N4nhLnV/zG/Tj32dA=="],
+    "@scaleway/changesets-renovate": ["@scaleway/changesets-renovate@2.2.6", "", { "dependencies": { "@types/js-yaml": "4.0.9", "fast-glob": "3.3.3", "js-yaml": "4.1.1", "simple-git": "3.36.0" }, "bin": { "changesets-renovate": "dist/cli.js" } }, "sha512-OrF+c8DxI6xTnu0id16q0bblVzV+g8efhGF8l/CJWiMuDatLa5D5bpH11eaAGhYwvrT62B6/OdkeXtW3epkLYQ=="],
+
+    "@simple-git/args-pathspec": ["@simple-git/args-pathspec@1.0.3", "", {}, "sha512-ngJMaHlsWDTfjyq9F3VIQ8b7NXbBLq5j9i5bJ6XLYtD6qlDXT7fdKY2KscWWUF8t18xx052Y/PUO1K1TRc9yKA=="],
+
+    "@simple-git/argv-parser": ["@simple-git/argv-parser@1.1.1", "", { "dependencies": { "@simple-git/args-pathspec": "^1.0.3" } }, "sha512-Q9lBcfQ+VQCpQqGJFHe5yooOS5hGdLFFbJ5R+R5aDsnkPCahtn1hSkMcORX65J2Z5lxSkD0lQorMsncuBQxYUw=="],
 
     "@simple-libs/child-process-utils": ["@simple-libs/child-process-utils@1.0.2", "", { "dependencies": { "@simple-libs/stream-utils": "^1.2.0" } }, "sha512-/4R8QKnd/8agJynkNdJmNw2MBxuFTRcNFnE5Sg/G+jkSsV8/UBgULMzhizWWW42p8L5H7flImV2ATi79Ove2Tw=="],
 
@@ -633,7 +637,7 @@
 
     "signal-exit": ["signal-exit@4.1.0", "", {}, "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw=="],
 
-    "simple-git": ["simple-git@3.33.0", "", { "dependencies": { "@kwsites/file-exists": "^1.1.1", "@kwsites/promise-deferred": "^1.1.1", "debug": "^4.4.0" } }, "sha512-D4V/tGC2sjsoNhoMybKyGoE+v8A60hRawKQ1iFRA1zwuDgGZCBJ4ByOzZ5J8joBbi4Oam0qiPH+GhzmSBwbJng=="],
+    "simple-git": ["simple-git@3.36.0", "", { "dependencies": { "@kwsites/file-exists": "^1.1.1", "@kwsites/promise-deferred": "^1.1.1", "@simple-git/args-pathspec": "^1.0.3", "@simple-git/argv-parser": "^1.1.0", "debug": "^4.4.0" } }, "sha512-cGQjLjK8bxJw4QuYT7gxHw3/IouVESbhahSsHrX97MzCL1gu2u7oy38W6L2ZIGECEfIBG4BabsWDPjBxJENv9Q=="],
 
     "slash": ["slash@5.1.0", "", {}, "sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg=="],
 

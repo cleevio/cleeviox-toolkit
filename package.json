@@ -40,7 +40,7 @@
   },
   "name": "toolkit",
   "overrides": {
-    "ajv": ">=8.18.0"
+    "ajv": ">=8.20.0"
   },
   "packageManager": "bun@1.3.10",
   "private": true,

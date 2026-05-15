@@ -20,7 +20,7 @@
     "@commitlint/config-conventional": "^21.0.1",
     "@commitlint/types": "^21.0.1",
     "@manypkg/cli": "^0.25.1",
-    "@scaleway/changesets-renovate": "^2.2.6",
+    "@scaleway/changesets-renovate": "^2.4.0",
     "@types/node": "^25.6.0",
     "del-cli": "^7.0.0",
     "husky": "^9.1.7",

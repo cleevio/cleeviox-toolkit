@@ -19,7 +19,7 @@
         "@commitlint/config-conventional": "^21.0.1",
         "@commitlint/types": "^21.0.1",
         "@manypkg/cli": "^0.25.1",
-        "@scaleway/changesets-renovate": "^2.4.0",
+        "@scaleway/changesets-renovate": "^3.0.2",
         "@types/node": "^25.6.0",
         "del-cli": "^7.0.0",
         "husky": "^9.1.7",
@@ -293,7 +293,7 @@
 
     "@pnpm/npm-conf": ["@pnpm/npm-conf@3.0.2", "", { "dependencies": { "@pnpm/config.env-replace": "^1.1.0", "@pnpm/network.ca-file": "^1.0.1", "config-chain": "^1.1.11" } }, "sha512-h104Kh26rR8tm+a3Qkc5S4VLYint3FE48as7+/5oCEcKR2idC/pF1G6AhIXKI+eHPJa/3J9i5z0Al47IeGHPkA=="],
 
-    "@scaleway/changesets-renovate": ["@scaleway/changesets-renovate@2.4.0", "", { "dependencies": { "@changesets/config": "3.1.4", "simple-git": "3.36.0", "tinyglobby": "0.2.16", "yaml": "2.8.4" }, "bin": { "changesets-renovate": "dist/cli.js" } }, "sha512-Y9ufur9NXTXNob82nbmp2g3YDVaafFU4UMxQUJUDBy1BzcE2rEg0TXcKWPhJ5yx21+EDgI3VlILxYvbVH6o9bg=="],
+    "@scaleway/changesets-renovate": ["@scaleway/changesets-renovate@3.0.2", "", { "dependencies": { "@changesets/config": "3.1.4", "simple-git": "3.36.0", "tinyglobby": "0.2.16", "yaml": "2.9.0" }, "bin": { "changesets-renovate": "dist/cli.mjs" } }, "sha512-fCZKdfccLnbkgRnKvnUkhX8s9jWh+N5tCv356atAHHZAGLCawTVkiOjd+VWCtwrdr5Qc30KJXRObeZGRqgjMkA=="],
 
     "@simple-git/args-pathspec": ["@simple-git/args-pathspec@1.0.3", "", {}, "sha512-ngJMaHlsWDTfjyq9F3VIQ8b7NXbBLq5j9i5bJ6XLYtD6qlDXT7fdKY2KscWWUF8t18xx052Y/PUO1K1TRc9yKA=="],
 
@@ -681,7 +681,7 @@
 
     "y18n": ["y18n@5.0.8", "", {}, "sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA=="],
 
-    "yaml": ["yaml@2.8.4", "", { "bin": { "yaml": "bin.mjs" } }, "sha512-ml/JPOj9fOQK8RNnWojA67GbZ0ApXAUlN2UQclwv2eVgTgn7O9gg9o7paZWKMp4g0H3nTLtS9LVzhkpOFIKzog=="],
+    "yaml": ["yaml@2.9.0", "", { "bin": { "yaml": "bin.mjs" } }, "sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA=="],
 
     "yargs": ["yargs@18.0.0", "", { "dependencies": { "cliui": "^9.0.1", "escalade": "^3.1.1", "get-caller-file": "^2.0.5", "string-width": "^7.2.0", "y18n": "^5.0.5", "yargs-parser": "^22.0.0" } }, "sha512-4UEqdc2RYGHZc7Doyqkrqiln3p9X2DZVxaGbwhn2pi7MrRagKaOcIKe8L3OxYcbhXLgLFUS3zAYuQjKBQgmuNg=="],
 

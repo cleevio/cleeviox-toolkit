@@ -1,5 +1,12 @@
 # @cleeviox/lint-staged
 
+## 0.1.7
+
+### Patch Changes
+
+- 3c3c461: Updated dependency `lint-staged` to `^17.0.5`.
+- 8e08f77: Updated dependency `lint-staged` to `^17.0.0`.
+
 ## 0.1.6
 
 ### Patch Changes

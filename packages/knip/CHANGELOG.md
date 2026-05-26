@@ -1,5 +1,13 @@
 # @cleeviox/knip
 
+## 0.2.1
+
+### Patch Changes
+
+- 496e0a6: Updated dependency `@types/bun` to `^1.3.13`.
+- a473b3c: Updated dependency `@types/bun` to `^1.3.14`.
+- 46e9e58: Updated dependency `knip` to `^6.5.0`.
+
 ## 0.2.0
 
 ### Minor Changes

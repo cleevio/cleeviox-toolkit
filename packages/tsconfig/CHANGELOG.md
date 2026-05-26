@@ -1,5 +1,11 @@
 # @cleeviox/tsconfig
 
+## 0.2.1
+
+### Patch Changes
+
+- 20db42c: Updated dependency `typescript` to `^6.0.3`.
+
 ## 0.2.0
 
 ### Minor Changes

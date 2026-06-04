@@ -1,5 +1,11 @@
 # @cleeviox/biome
 
+## 0.2.12
+
+### Patch Changes
+
+- d55cc32: Updated dependency `@biomejs/biome` to `^2.4.16`.
+
 ## 0.2.11
 
 ### Patch Changes

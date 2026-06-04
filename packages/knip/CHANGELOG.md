@@ -1,5 +1,12 @@
 # @cleeviox/knip
 
+## 0.2.2
+
+### Patch Changes
+
+- ff56b48: Updated dependency `knip` to `^6.15.0`.
+- 6ca2a42: Updated dependency `knip` to `^6.14.2`.
+
 ## 0.2.1
 
 ### Patch Changes

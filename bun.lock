@@ -24,7 +24,7 @@
         "del-cli": "^7.0.0",
         "husky": "^9.1.7",
         "knip": "^6.15.0",
-        "lint-staged": "^17.0.6",
+        "lint-staged": "^17.0.7",
         "turbo": "^2.9.16",
         "typescript": "^6.0.3",
       },
@@ -54,10 +54,10 @@
       "name": "@cleeviox/lint-staged",
       "version": "0.1.7",
       "devDependencies": {
-        "lint-staged": "^17.0.6",
+        "lint-staged": "^17.0.7",
       },
       "peerDependencies": {
-        "lint-staged": "^17.0.6",
+        "lint-staged": "^17.0.7",
       },
     },
     "packages/tsconfig": {

@@ -21,7 +21,7 @@
     "@commitlint/types": "^21.0.1",
     "@manypkg/cli": "^0.25.1",
     "@scaleway/changesets-renovate": "^3.0.2",
-    "@types/node": "^25.6.0",
+    "@types/node": "^26.0.1",
     "del-cli": "^7.0.0",
     "husky": "^9.1.7",
     "knip": "^6.16.1",

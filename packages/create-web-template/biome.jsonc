@@ -1,0 +1,66 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+  "extends": "//",
+  "files": {
+    "includes": ["**", "!templates"]
+  },
+  "overrides": [
+    {
+      "includes": ["./lint-staged.config.js", "./**/*.config.{js,ts}"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off"
+          },
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      // This package is a Node.js terminal program, not browser/library code:
+      // node builtins, process.env, console output, and process.exit are its
+      // platform, and `* as p` is the documented @clack/prompts idiom.
+      "includes": ["./src/**", "./tests/**"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noNodejsModules": "off"
+          },
+          "performance": {
+            // Template fragments render sequentially by design — later
+            // fragments overwrite earlier ones (the composition mechanism).
+            "noAwaitInLoops": "off",
+            "noNamespaceImport": "off"
+          },
+          "style": {
+            "noProcessEnv": "off",
+            // Exhaustive switches over unions: a default clause would defeat
+            // the compiler's missing-case check.
+            "useDefaultSwitchClause": "off",
+            "useExportsLast": "off",
+            // Feature specs carry env-var keys (AUTH_SECRET) and generated
+            // JSON keys ($schema) as object properties.
+            "useNamingConvention": "off"
+          },
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    },
+    {
+      // Tests assert on length-boundary literals (e.g. the 214-char name limit).
+      "includes": ["./tests/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noMagicNumbers": "off"
+          }
+        }
+      }
+    }
+  ],
+  "root": false
+}

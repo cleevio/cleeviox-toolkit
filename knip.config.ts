@@ -14,6 +14,15 @@ export default defineConfig(baseMonorepoRootConfig, {
       ignoreFiles: [],
       project: [],
     },
+    'packages/create-web-template': {
+      ...baseMonorepoRootConfig.workspaces['packages/*'],
+      entry: ['src/index.ts'],
+      // Templates are scaffold output, not project code — their imports
+      // resolve inside generated apps, never in this repo.
+      ignore: ['templates/**'],
+      ignoreFiles: [],
+      project: ['src/**/*.ts', 'tests/**/*.ts'],
+    },
     'packages/knip': {
       ...baseMonorepoRootConfig.workspaces['packages/*'],
       entry: ['src/index.ts'],

@@ -1,0 +1,32 @@
+import type { Metadata } from 'next';
+{{#if (eq auth 'clerk')}}
+import { ClerkProvider } from '@clerk/nextjs';
+{{/if}}
+
+import { Providers } from './providers';
+import './globals.css';
+
+export const metadata: Metadata = {
+  description: 'Bootstrapped with @cleeviox/create-web-template',
+  title: '{{projectName}}',
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+{{#if (eq auth 'clerk')}}
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Providers>{children}</Providers>
+        </body>
+      </html>
+    </ClerkProvider>
+{{else}}
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+{{/if}}
+  );
+}

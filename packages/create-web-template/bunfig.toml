@@ -1,0 +1,4 @@
+# Restrict discovery to tests/ — templates/ contains *.spec.ts files that are
+# scaffolding output, not tests of this package.
+[test]
+root = "tests"

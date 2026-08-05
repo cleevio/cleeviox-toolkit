@@ -8,6 +8,8 @@ import sortPackageJson from 'sort-package-json';
 
 import { selectFeatures } from './features/registry.js';
 import { CliError } from './lib/errors.js';
+import { fetchFigmaVariables, figmaVariablesToThemeCss, parseFigmaFileKey } from './lib/figma.js';
+import { injectCssImports } from './lib/globals-css.js';
 import { featureDependencyNames, type Manifest, mergeManifest } from './lib/manifest.js';
 import { latestMajor, packageExists, resolveAll } from './lib/npm-registry.js';
 import { auditArgs, dlx } from './lib/package-manager.js';
@@ -215,6 +217,65 @@ async function renderFragment(config: ProjectConfig, source: string): Promise<vo
   }
 }
 
+/**
+ * globals.css is create-next-app's file — we patch it (anchored insert after
+ * the tailwind import), never overwrite it, so their baseline keeps evolving
+ * under us. Feature stylesheets own everything else (e.g. ui-core's
+ * styles.css carries its own @source registration and tokens).
+ */
+/**
+ * Runs BEFORE create-next-app: a bad token or missing permissions must fail
+ * while nothing is on disk yet. Returns the rendered theme.css contents.
+ */
+async function resolveFigmaThemeCss(config: ProjectConfig): Promise<string | undefined> {
+  if (config.figmaUrl === undefined) {
+    return undefined;
+  }
+  if (config.dryRun) {
+    p.log.step(`would generate src/app/theme.css from ${config.figmaUrl}`);
+    return undefined;
+  }
+
+  const fileKey = parseFigmaFileKey(config.figmaUrl);
+  if (fileKey === undefined) {
+    throw new CliError(`Could not extract a file key from ${config.figmaUrl}.`);
+  }
+  if (config.figmaToken === undefined) {
+    throw new CliError('A Figma token is required to read variables (set FIGMA_TOKEN).');
+  }
+
+  const payload = await fetchFigmaVariables(fileKey, config.figmaToken);
+  const css = figmaVariablesToThemeCss(payload, config.figmaUrl);
+  if (!css.includes('--')) {
+    p.log.warn('The Figma file has no mappable variables — theme.css will only contain the header.');
+  }
+  return css;
+}
+
+async function patchGlobalsCss(
+  config: ProjectConfig,
+  features: readonly FeatureSpec[],
+  extraSpecifiers: readonly string[],
+): Promise<void> {
+  const specifiers = [...extraSpecifiers, ...features.flatMap((feature) => feature.cssImports ?? [])];
+  if (specifiers.length === 0) {
+    return;
+  }
+
+  const file = path.join(config.targetDir, 'src', 'app', 'globals.css');
+  if (config.dryRun) {
+    p.log.step(`would add ${specifiers.join(', ')} to src/app/globals.css`);
+    return;
+  }
+
+  const source = await fs.readFile(file, 'utf8');
+  const { anchored, css } = injectCssImports(source, specifiers);
+  if (!anchored) {
+    p.log.warn('No `@import "tailwindcss"` found in globals.css — imports were prepended; verify the file.');
+  }
+  await fs.writeFile(file, css, 'utf8');
+}
+
 async function writeEnvExample(config: ProjectConfig, features: readonly FeatureSpec[]): Promise<void> {
   const env: Record<string, string> = Object.assign({}, ...features.map((feature) => feature.env ?? {}));
   if (Object.keys(env).length === 0) {
@@ -255,13 +316,21 @@ export async function scaffold(config: ProjectConfig): Promise<ScaffoldResult> {
 
   const features = selectFeatures(config);
   const spinner = p.spinner();
+  let themeCss: string | undefined;
 
   if (config.dryRun) {
     p.log.info('Dry run — nothing will be written to disk.');
+    await resolveFigmaThemeCss(config);
   } else {
     spinner.start(`Checking ${SCOPE} packages are reachable`);
     await assertCleevioConfigsPublished();
     spinner.stop(`${SCOPE} registry reachable`);
+
+    if (config.figmaUrl !== undefined) {
+      spinner.start('Reading design variables from Figma');
+      themeCss = await resolveFigmaThemeCss(config);
+      spinner.stop('Figma variables mapped to theme.css');
+    }
 
     p.log.step('Scaffolding Next.js via create-next-app@latest');
     await runCreateNextApp(config);
@@ -277,6 +346,10 @@ export async function scaffold(config: ProjectConfig): Promise<ScaffoldResult> {
 
   spinner.start('Rendering feature templates');
   await renderTemplates(config, features);
+  if (themeCss !== undefined) {
+    await writeText(path.join(config.targetDir, 'src', 'app', 'theme.css'), themeCss, config);
+  }
+  await patchGlobalsCss(config, features, themeCss === undefined ? [] : ['./theme.css']);
   spinner.stop('Templates rendered');
 
   if (config.dryRun || !config.install) {

@@ -1,6 +1,2 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]): string {
-  return twMerge(clsx(inputs));
-}
+// Re-exported so app code and @cleeviox/ui-core components share one implementation.
+export { cn } from '@cleeviox/ui-core';

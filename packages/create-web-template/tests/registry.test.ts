@@ -12,20 +12,24 @@ const TEMPLATE_ROOT = fileURLToPath(new URL('../templates', import.meta.url));
 
 const STYLINGS: readonly Styling[] = ['ui-core', 'shadcn', 'tailwind-only'];
 const DATA_LAYERS: readonly DataLayer[] = ['server-actions', 'tanstack-query', 'tanstack-query-zustand'];
-const AUTHS: readonly Auth[] = ['none', 'authjs', 'clerk', 'cleevio-jwt'];
+const AUTHS: readonly Auth[] = ['none', 'workos', 'firebase'];
 const PACKAGE_MANAGERS: readonly PackageManager[] = ['pnpm', 'npm', 'bun'];
 
 function makeConfig(overrides: Partial<ProjectConfig>): ProjectConfig {
   return {
+    about: '',
     addons: [],
     audit: true,
     auth: 'none',
     data: 'tanstack-query',
     dryRun: false,
+    figmaToken: undefined,
+    figmaUrl: undefined,
     git: true,
     install: true,
     packageManager: 'pnpm',
     projectName: 'test-app',
+    stack: 'nextjs',
     styling: 'shadcn',
     targetDir: '/tmp/test-app',
     ...overrides,

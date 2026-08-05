@@ -51,10 +51,14 @@
       }
     },
     {
-      // Tests assert on length-boundary literals (e.g. the 214-char name limit).
+      // Tests assert on length-boundary literals (e.g. the 214-char name
+      // limit) and use fake high-entropy IDs (Figma file keys) as fixtures.
       "includes": ["./tests/**"],
       "linter": {
         "rules": {
+          "security": {
+            "noSecrets": "off"
+          },
           "style": {
             "noMagicNumbers": "off"
           }

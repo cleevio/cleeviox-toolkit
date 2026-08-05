@@ -6,6 +6,7 @@ import { Command, Option } from 'commander';
 import color from 'picocolors';
 
 import { CliError } from './lib/errors.js';
+import { parseFigmaFileKey } from './lib/figma.js';
 import { packageExists } from './lib/npm-registry.js';
 import { detectPackageManager } from './lib/package-manager.js';
 import { defaultDirectoryFor, validateProjectName } from './lib/project-name.js';
@@ -19,19 +20,23 @@ import {
   type DataLayer,
   type PackageManager,
   type ProjectConfig,
+  type Stack,
   type Styling,
 } from './types.js';
 
 interface RawFlags {
+  readonly about?: string;
   readonly addons?: readonly Addon[];
   readonly audit: boolean;
   readonly auth?: Auth;
   readonly data?: DataLayer;
   readonly dir?: string;
   readonly dryRun: boolean;
+  readonly figma?: string;
   readonly git: boolean;
   readonly install: boolean;
   readonly pm?: PackageManager;
+  readonly stack?: Stack;
   readonly styling?: Styling;
   readonly yes: boolean;
 }
@@ -60,11 +65,23 @@ function parseAddons(raw: string): readonly Addon[] {
   return parsed as Addon[];
 }
 
+/**
+ * Subcommand layout from day one — `init` is the default, so both
+ * `npm create @cleeviox/web-template my-app` and `… init my-app` work, and
+ * future subcommands (sync-theme, add <feature>) slot in without a breaking
+ * change to the flag surface.
+ */
 function parseProgram(argv: readonly string[]): { flags: RawFlags; nameArg: string | undefined } {
-  const program = new Command()
-    .name('create-web-template')
-    .description('Scaffold a Cleevio Next.js application (App Router, TypeScript, Biome).')
+  let parsed: { flags: RawFlags; nameArg: string | undefined } | undefined;
+
+  const program = new Command().name('create-web-template').description('Cleevio Next.js project tooling.');
+
+  program
+    .command('init', { isDefault: true })
+    .description('Scaffold a Cleevio Next.js application (App Router, TypeScript, Biome) — the default command.')
     .argument('[project-name]', 'directory / package name of the new app')
+    .option('--about <text>', 'one/two sentences on the project scope — lands in the generated CLAUDE.md')
+    .addOption(new Option('--stack <stack>', 'tech stack (default: nextjs; more stacks planned)').choices(['nextjs']))
     .addOption(new Option('--pm <manager>', 'package manager').choices(['pnpm', 'npm', 'bun']))
     .addOption(new Option('--styling <preset>', 'UI & styling preset').choices(['ui-core', 'shadcn', 'tailwind-only']))
     .addOption(
@@ -74,20 +91,27 @@ function parseProgram(argv: readonly string[]): { flags: RawFlags; nameArg: stri
         'tanstack-query-zustand',
       ]),
     )
-    .addOption(
-      new Option('--auth <provider>', 'authentication provider').choices(['none', 'authjs', 'clerk', 'cleevio-jwt']),
-    )
+    .addOption(new Option('--auth <provider>', 'authentication provider').choices(['none', 'workos', 'firebase']))
     .option('--addons <list>', `comma-separated: ${ADDONS.join(',')}`, parseAddons)
     .option('--dir <path>', 'output directory (default: derived from the project name)')
+    .option('--figma <url>', 'Figma file URL — its variables become src/app/theme.css (needs FIGMA_TOKEN)')
     .option('--no-install', 'skip dependency installation')
     .option('--no-git', 'skip git initialisation')
     .option('--no-audit', 'skip the post-install vulnerability audit')
     .option('--dry-run', 'plan only — write nothing to disk', false)
     .option('-y, --yes', 'accept all defaults, never prompt', false)
     .allowExcessArguments(false)
-    .parse([...argv]);
+    .action((projectName: string | undefined, flags: RawFlags) => {
+      parsed = { flags, nameArg: projectName };
+    });
 
-  return { flags: program.opts<RawFlags>(), nameArg: program.args[0] };
+  program.parse([...argv]);
+
+  if (parsed === undefined) {
+    // Unreachable for the init path (commander exits itself on --help/--version).
+    throw new CliError('No command was run — see --help.');
+  }
+  return parsed;
 }
 
 async function assertStylingInstallable(styling: Styling): Promise<void> {
@@ -98,27 +122,107 @@ async function assertStylingInstallable(styling: Styling): Promise<void> {
   }
 }
 
+function envFigmaToken(): string | undefined {
+  return process.env.FIGMA_TOKEN ?? process.env.FIGMA_ACCESS_TOKEN;
+}
+
+function validateFigmaUrl(url: string): string | undefined {
+  return parseFigmaFileKey(url) ? undefined : 'Expected a figma.com file/design URL.';
+}
+
+function assertFigmaFlagsUsable(flags: RawFlags): void {
+  if (flags.figma === undefined) {
+    return;
+  }
+  const urlError = validateFigmaUrl(flags.figma);
+  if (urlError) {
+    throw new CliError(urlError);
+  }
+  if (!(envFigmaToken() || flags.dryRun)) {
+    throw new CliError('--figma needs a FIGMA_TOKEN (or FIGMA_ACCESS_TOKEN) environment variable.');
+  }
+}
+
 function nonInteractiveConfig(nameArg: string | undefined, flags: RawFlags): ProjectConfig {
   const projectName = nameArg ?? 'cleevio-web-app';
   const nameError = validateProjectName(projectName);
   if (nameError) {
     throw new CliError(`Invalid project name: ${nameError}`);
   }
+  assertFigmaFlagsUsable(flags);
 
   return {
+    about: flags.about ?? '',
     addons: flags.addons ?? [],
     audit: flags.audit,
     auth: flags.auth ?? 'none',
     data: flags.data ?? 'tanstack-query',
     dryRun: flags.dryRun,
+    figmaToken: envFigmaToken(),
+    figmaUrl: flags.figma,
     git: flags.git,
     install: flags.install,
     packageManager: flags.pm ?? detectPackageManager(),
     projectName,
+    stack: flags.stack ?? 'nextjs',
     // Default flips to ui-core once @cleeviox/ui-core is published.
     styling: flags.styling ?? 'shadcn',
     targetDir: path.resolve(process.cwd(), flags.dir ?? defaultDirectoryFor(projectName)),
   };
+}
+
+async function promptAbout(flags: RawFlags): Promise<string> {
+  return (
+    flags.about ??
+    unwrap(
+      await p.text({
+        defaultValue: '',
+        message: 'What is this project about? (lands in CLAUDE.md)',
+        placeholder: 'e.g. Customer portal for X — orders, invoicing, admin. Enter to skip',
+      }),
+    )
+  );
+}
+
+async function promptStack(flags: RawFlags): Promise<Stack> {
+  return (
+    flags.stack ??
+    unwrap(
+      await p.select({
+        initialValue: 'nextjs' as Stack,
+        message: 'Tech stack',
+        options: [
+          { hint: 'default — more stacks planned', label: 'Frontend — Next.js (App Router)', value: 'nextjs' as Stack },
+        ],
+      }),
+    )
+  );
+}
+
+async function promptFigma(flags: RawFlags): Promise<{ token: string | undefined; url: string | undefined }> {
+  const url =
+    flags.figma ??
+    unwrap(
+      await p.text({
+        defaultValue: '',
+        message: 'Figma file with design variables (optional)',
+        placeholder: 'https://www.figma.com/design/… — Enter to skip',
+        validate: (value) => (value ? validateFigmaUrl(value) : undefined),
+      }),
+    );
+  if (!url) {
+    return { token: undefined, url: undefined };
+  }
+
+  const token =
+    envFigmaToken() ??
+    unwrap(
+      await p.password({
+        message: 'Figma access token (file_variables:read scope; tip: export FIGMA_TOKEN to skip this)',
+        validate: (value) => (value ? undefined : 'Token is required to read Figma variables.'),
+      }),
+    );
+  return { token, url };
 }
 
 async function promptStyling(uiCoreAvailable: boolean): Promise<Styling> {
@@ -166,9 +270,8 @@ async function promptAuth(): Promise<Auth> {
       message: 'Authentication',
       options: [
         { label: 'None', value: 'none' as Auth },
-        { label: 'Auth.js (NextAuth v5)', value: 'authjs' as Auth },
-        { label: 'Clerk', value: 'clerk' as Auth },
-        { hint: 'httpOnly cookie + refresh rotation', label: 'Cleevio JWT flow', value: 'cleevio-jwt' as Auth },
+        { hint: 'AuthKit middleware + callback route', label: 'WorkOS', value: 'workos' as Auth },
+        { hint: 'client SDK baseline', label: 'Firebase Auth', value: 'firebase' as Auth },
       ],
     }),
   );
@@ -254,22 +357,29 @@ async function collectConfig(nameArg: string | undefined, flags: RawFlags): Prom
     throw new CliError(dirConflict);
   }
 
+  const about = await promptAbout(flags);
+  const stack = await promptStack(flags);
   const styling = flags.styling ?? (await promptStyling(await uiCoreProbe));
+  const figma = await promptFigma(flags);
   const data = flags.data ?? (await promptData());
   const auth = flags.auth ?? (await promptAuth());
   const addons = flags.addons ?? (await promptAddons());
   const packageManager = flags.pm ?? (await promptPackageManager(detectPackageManager()));
 
   return {
+    about,
     addons,
     audit: flags.audit,
     auth,
     data,
     dryRun: flags.dryRun,
+    figmaToken: figma.token,
+    figmaUrl: figma.url,
     git: flags.git,
     install: flags.install,
     packageManager,
     projectName,
+    stack,
     styling,
     targetDir,
   };

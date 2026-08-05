@@ -7,8 +7,12 @@ const STYLING: Record<ProjectConfig['styling'], FeatureSpec> = {
     templates: ['styling/shadcn'],
   },
   'tailwind-only': {},
+  // cn/Button come from the package itself; clsx & tailwind-merge arrive
+  // transitively. styles.css self-registers the package with Tailwind
+  // (@source inside) and owns shared design tokens.
   'ui-core': {
-    dependencies: [pkg('ui-core'), 'clsx', 'tailwind-merge'],
+    cssImports: [`${pkg('ui-core')}/styles.css`],
+    dependencies: [pkg('ui-core')],
     templates: ['styling/ui-core'],
   },
 };
@@ -28,22 +32,27 @@ const DATA: Record<ProjectConfig['data'], FeatureSpec> = {
 };
 
 const AUTH: Record<ProjectConfig['auth'], FeatureSpec> = {
-  authjs: {
-    dependencies: ['next-auth'],
-    env: { AUTH_SECRET: '', AUTH_URL: 'http://localhost:3000' },
-    templates: ['auth/authjs'],
-  },
-  'cleevio-jwt': {
-    dependencies: ['jose'],
-    env: { CLEEVIO_AUTH_API_URL: '', CLEEVIO_JWT_COOKIE_NAME: 'cleevio_session' },
-    templates: ['auth/cleevio-jwt'],
-  },
-  clerk: {
-    dependencies: ['@clerk/nextjs'],
-    env: { CLERK_SECRET_KEY: '', NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: '' },
-    templates: ['auth/clerk'],
+  firebase: {
+    dependencies: ['firebase'],
+    env: {
+      NEXT_PUBLIC_FIREBASE_API_KEY: '',
+      NEXT_PUBLIC_FIREBASE_APP_ID: '',
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: '',
+      NEXT_PUBLIC_FIREBASE_PROJECT_ID: '',
+    },
+    templates: ['auth/firebase'],
   },
   none: {},
+  workos: {
+    dependencies: ['@workos-inc/authkit-nextjs'],
+    env: {
+      NEXT_PUBLIC_WORKOS_REDIRECT_URI: 'http://localhost:3000/callback',
+      WORKOS_API_KEY: '',
+      WORKOS_CLIENT_ID: '',
+      WORKOS_COOKIE_PASSWORD: '',
+    },
+    templates: ['auth/workos'],
+  },
 };
 
 const ADDONS: Record<ProjectConfig['addons'][number], (config: ProjectConfig) => FeatureSpec> = {

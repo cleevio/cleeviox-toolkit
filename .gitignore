@@ -93,3 +93,6 @@ lerna-debug.log*
 # Turborepo
 .turbo
 .vercel
+
+# Claude Code local session settings
+.claude/settings.local.json

@@ -8,4 +8,4 @@
  * app-side configuration. Shared design tokens land here as they are
  * introduced and reach apps through a normal dependency bump.
  */
-@source './dist';
+@source "./dist";

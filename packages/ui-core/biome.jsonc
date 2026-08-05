@@ -1,5 +1,11 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+  "css": {
+    // styles.css uses Tailwind v4 directives (@source).
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "extends": "//",
   "overrides": [
     {

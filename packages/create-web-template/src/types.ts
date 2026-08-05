@@ -14,6 +14,8 @@ export interface ProjectConfig {
   readonly addons: readonly Addon[];
   readonly audit: boolean;
   readonly auth: Auth;
+  /** Configure the Cleevio Claude Code marketplace (.claude/settings.json) as the tooling source of truth. */
+  readonly claudeMarketplace: boolean;
   readonly data: DataLayer;
   readonly dryRun: boolean;
   /** Figma personal access token (env FIGMA_TOKEN or prompted) — never persisted. */

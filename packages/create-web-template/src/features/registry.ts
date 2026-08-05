@@ -73,6 +73,15 @@ const ADDONS: Record<ProjectConfig['addons'][number], (config: ProjectConfig) =>
   }),
 };
 
+/**
+ * Registers the Cleevio Claude Code marketplace (committed .claude/settings.json)
+ * and enables the core + frontend plugins with their shared skills, agents,
+ * and reviewers.
+ */
+const CLAUDE_MARKETPLACE: FeatureSpec = {
+  templates: ['claude-marketplace'],
+};
+
 /** Always-on Cleevio baseline. Versions are still resolved dynamically. */
 const BASE: FeatureSpec = {
   devDependencies: [
@@ -105,6 +114,7 @@ export function selectFeatures(config: ProjectConfig): readonly FeatureSpec[] {
     STYLING[config.styling],
     DATA[config.data],
     AUTH[config.auth],
+    ...(config.claudeMarketplace ? [CLAUDE_MARKETPLACE] : []),
     ...config.addons.map((addon) => ADDONS[addon](config)),
   ];
 }

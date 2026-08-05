@@ -16,7 +16,8 @@ Future subcommands (`sync-theme`, `add <feature>`) will live under the same bin.
 2. Resolves the latest stable versions of all optional dependencies from the registry (caret ranges, nothing pinned by hand) and merges them into `package.json`.
 3. Attaches the Cleevio toolkit configs (`@cleeviox/tsconfig`, `@cleeviox/biome`, `@cleeviox/knip`, `@cleeviox/lint-staged`) as two-line `extends` files.
 4. Renders feature templates (styling, data layer, auth, add-ons) with Handlebars — including a project-specific `CLAUDE.md` built from your answers (scope, stack, features, commands, Cleevio conventions); create-next-app's `AGENTS.md` is kept as the framework-level layer.
-5. Installs dependencies with your package manager and runs a non-fatal vulnerability audit — enforce the gate in your CI pipeline, where a failure is actionable.
+5. Registers the [Cleevio Claude Code marketplace](https://gitlab.com/honzanemecek/cleevio-marketplace) in a committed `.claude/settings.json` (`cleevio-core` + `cleevio-frontend` plugins enabled) and, when the `claude` CLI is available, installs the frontend plugin right away — opt out with `--no-claude-marketplace`.
+6. Installs dependencies with your package manager and runs a non-fatal vulnerability audit — enforce the gate in your CI pipeline, where a failure is actionable.
 
 ## Flags
 
@@ -31,6 +32,7 @@ Future subcommands (`sync-theme`, `add <feature>`) will live under the same bin.
 | `--addons <list>` | `docker,storybook,playwright` | none |
 | `--dir <path>` | output directory | derived from project name (`@scope/app` → `./app`) |
 | `--figma <url>` | Figma file URL — variables become `src/app/theme.css` | off |
+| `--no-claude-marketplace` | skip Claude Code marketplace setup | marketplace on |
 | `--no-install` / `--no-git` / `--no-audit` | | |
 | `--dry-run` | plan only, write nothing | `false` |
 | `-y, --yes` | accept defaults, never prompt | `false` |

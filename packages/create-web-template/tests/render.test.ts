@@ -23,6 +23,7 @@ function makeConfig(overrides: Partial<ProjectConfig>): ProjectConfig {
     addons: [],
     audit: true,
     auth: 'none',
+    claudeMarketplace: true,
     data: 'tanstack-query',
     dryRun: false,
     figmaToken: undefined,
@@ -66,9 +67,15 @@ describe('renderTemplates', () => {
     // covered by globals-css.test.ts).
     expect(read(config, 'src/lib/cn.ts')).toContain("from '@cleeviox/ui-core'");
 
+    // Claude marketplace registered and referenced as source of truth.
+    const settings = read(config, '.claude/settings.json');
+    expect(settings).toContain('cleevio-marketplace');
+    expect(settings).toContain('cleevio-frontend@cleevio-marketplace');
+
     // CLAUDE.md reflects the chosen configuration.
     const claudeMd = read(config, 'CLAUDE.md');
     expect(claudeMd).toContain('# render-test-app');
+    expect(claudeMd).toContain('cleevio-marketplace');
     expect(claudeMd).toContain('Internal test project for the generator.');
     expect(claudeMd).toContain('@cleeviox/ui-core');
     expect(claudeMd).toContain('WorkOS AuthKit');
@@ -90,7 +97,12 @@ describe('renderTemplates', () => {
   });
 
   test('minimal config renders no client data layer and no wrappers', async () => {
-    const config = makeConfig({ auth: 'none', data: 'server-actions', styling: 'tailwind-only' });
+    const config = makeConfig({
+      auth: 'none',
+      claudeMarketplace: false,
+      data: 'server-actions',
+      styling: 'tailwind-only',
+    });
     await renderTemplates(config, selectFeatures(config));
 
     const providers = read(config, 'src/app/providers.tsx');
@@ -104,6 +116,8 @@ describe('renderTemplates', () => {
     const claudeMd = read(config, 'CLAUDE.md');
     expect(claudeMd).toContain('TODO: describe what this project does');
     expect(claudeMd).not.toContain('WorkOS');
+    expect(claudeMd).not.toContain('cleevio-marketplace');
+    expect(fs.existsSync(path.join(config.targetDir, '.claude'))).toBe(false);
   });
 
   test('dry run writes nothing', async () => {

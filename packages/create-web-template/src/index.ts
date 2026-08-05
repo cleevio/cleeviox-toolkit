@@ -29,6 +29,7 @@ interface RawFlags {
   readonly addons?: readonly Addon[];
   readonly audit: boolean;
   readonly auth?: Auth;
+  readonly claudeMarketplace: boolean;
   readonly data?: DataLayer;
   readonly dir?: string;
   readonly dryRun: boolean;
@@ -95,6 +96,7 @@ function parseProgram(argv: readonly string[]): { flags: RawFlags; nameArg: stri
     .option('--addons <list>', `comma-separated: ${ADDONS.join(',')}`, parseAddons)
     .option('--dir <path>', 'output directory (default: derived from the project name)')
     .option('--figma <url>', 'Figma file URL — its variables become src/app/theme.css (needs FIGMA_TOKEN)')
+    .option('--no-claude-marketplace', 'skip configuring the Cleevio Claude Code marketplace (.claude/settings.json)')
     .option('--no-install', 'skip dependency installation')
     .option('--no-git', 'skip git initialisation')
     .option('--no-audit', 'skip the post-install vulnerability audit')
@@ -156,6 +158,7 @@ function nonInteractiveConfig(nameArg: string | undefined, flags: RawFlags): Pro
     addons: flags.addons ?? [],
     audit: flags.audit,
     auth: flags.auth ?? 'none',
+    claudeMarketplace: flags.claudeMarketplace,
     data: flags.data ?? 'tanstack-query',
     dryRun: flags.dryRun,
     figmaToken: envFigmaToken(),
@@ -364,6 +367,15 @@ async function collectConfig(nameArg: string | undefined, flags: RawFlags): Prom
   const data = flags.data ?? (await promptData());
   const auth = flags.auth ?? (await promptAuth());
   const addons = flags.addons ?? (await promptAddons());
+  // Explicit --no-claude-marketplace skips the question entirely.
+  const claudeMarketplace =
+    flags.claudeMarketplace &&
+    unwrap(
+      await p.confirm({
+        initialValue: true,
+        message: 'Configure the Cleevio Claude Code marketplace? (shared skills, agents & reviewers)',
+      }),
+    );
   const packageManager = flags.pm ?? (await promptPackageManager(detectPackageManager()));
 
   return {
@@ -371,6 +383,7 @@ async function collectConfig(nameArg: string | undefined, flags: RawFlags): Prom
     addons,
     audit: flags.audit,
     auth,
+    claudeMarketplace,
     data,
     dryRun: flags.dryRun,
     figmaToken: figma.token,

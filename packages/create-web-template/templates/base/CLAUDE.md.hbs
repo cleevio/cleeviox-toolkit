@@ -58,6 +58,15 @@
 - `{{packageManager}} run storybook` — component workbench on :6006
 {{/if}}
 
+{{#if claudeMarketplace}}
+## Claude tooling
+
+The Cleevio plugin marketplace is configured in `.claude/settings.json`
+(`cleevio-core` + `cleevio-frontend` plugins enabled) — prefer its shared
+skills, agents, and reviewers over ad-hoc approaches. Marketplace repo:
+https://gitlab.com/honzanemecek/cleevio-marketplace
+
+{{/if}}
 ## Conventions
 
 - Lint/format/TS rules are NOT configured here — `tsconfig.json`, `biome.jsonc`,

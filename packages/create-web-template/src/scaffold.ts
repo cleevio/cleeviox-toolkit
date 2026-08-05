@@ -288,7 +288,56 @@ async function writeEnvExample(config: ProjectConfig, features: readonly Feature
 }
 
 /* ------------------------------------------------------------------ *
- * 5. Install + audit.
+ * 5. Claude Code marketplace plugins.
+ * ------------------------------------------------------------------ */
+
+const CLAUDE_MARKETPLACE_URL = 'https://gitlab.com/honzanemecek/cleevio-marketplace.git';
+const CLAUDE_FRONTEND_PLUGIN = 'cleevio-frontend@cleevio-marketplace';
+const CLAUDE_CLI_TIMEOUT_MS = 60_000;
+
+/**
+ * Best-effort immediate install via the `claude` CLI so the plugins work in
+ * the very first session. Never fatal: the committed .claude/settings.json
+ * already registers the marketplace and enables the plugins for everyone who
+ * clones the project — this step only removes the wait for the trust prompt.
+ */
+async function installClaudePlugins(config: ProjectConfig): Promise<void> {
+  if (!config.claudeMarketplace) {
+    return;
+  }
+  if (config.dryRun) {
+    p.log.step(`would register the Cleevio marketplace and install ${CLAUDE_FRONTEND_PLUGIN}`);
+    return;
+  }
+
+  const probe = await execa('claude', ['--version'], { reject: false, timeout: CLAUDE_CLI_TIMEOUT_MS });
+  if (probe.exitCode !== 0) {
+    p.log.info('Claude Code CLI not found — plugins will be picked up from .claude/settings.json on first session.');
+    return;
+  }
+
+  // Tolerates the marketplace already being registered on this machine.
+  await execa('claude', ['plugin', 'marketplace', 'add', CLAUDE_MARKETPLACE_URL], {
+    reject: false,
+    timeout: CLAUDE_CLI_TIMEOUT_MS,
+  });
+
+  const install = await execa('claude', ['plugin', 'install', CLAUDE_FRONTEND_PLUGIN], {
+    reject: false,
+    timeout: CLAUDE_CLI_TIMEOUT_MS,
+  });
+  if (install.exitCode === 0) {
+    p.log.success(`Installed ${CLAUDE_FRONTEND_PLUGIN}.`);
+  } else {
+    p.log.warn(
+      `Could not install ${CLAUDE_FRONTEND_PLUGIN} automatically — run ` +
+        `\`claude plugin install ${CLAUDE_FRONTEND_PLUGIN}\` manually (settings.json covers the project either way).`,
+    );
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * 6. Install + audit.
  * ------------------------------------------------------------------ */
 
 async function install(config: ProjectConfig): Promise<void> {
@@ -351,6 +400,8 @@ export async function scaffold(config: ProjectConfig): Promise<ScaffoldResult> {
   }
   await patchGlobalsCss(config, features, themeCss === undefined ? [] : ['./theme.css']);
   spinner.stop('Templates rendered');
+
+  await installClaudePlugins(config);
 
   if (config.dryRun || !config.install) {
     return { auditWarnings: 0, targetDir: config.targetDir };

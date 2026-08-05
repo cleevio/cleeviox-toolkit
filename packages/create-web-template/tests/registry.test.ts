@@ -21,6 +21,7 @@ function makeConfig(overrides: Partial<ProjectConfig>): ProjectConfig {
     addons: [],
     audit: true,
     auth: 'none',
+    claudeMarketplace: true,
     data: 'tanstack-query',
     dryRun: false,
     figmaToken: undefined,

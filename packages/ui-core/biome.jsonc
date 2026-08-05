@@ -1,0 +1,37 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+  "extends": "//",
+  "overrides": [
+    {
+      "includes": [
+        "./lint-staged.config.js",
+        "./**/*.config.{js,ts}",
+        "./src/**/index.ts"
+      ],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off"
+          },
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      // Components ship alongside their CVA variant builders (shadcn-style
+      // `buttonVariants`) — the fast-refresh motivation behind this rule does
+      // not apply to a compiled library.
+      "includes": ["./src/components/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useComponentExportOnlyModules": "off"
+          }
+        }
+      }
+    }
+  ],
+  "root": false
+}

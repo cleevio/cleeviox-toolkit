@@ -1,0 +1,11 @@
+/*
+ * @cleeviox/ui-core stylesheet — imported once from the app's globals.css:
+ *
+ *   @import '@cleeviox/ui-core/styles.css';
+ *
+ * The @source below registers this package's components with Tailwind (paths
+ * are relative to this file), so their classes are generated without any
+ * app-side configuration. Shared design tokens land here as they are
+ * introduced and reach apps through a normal dependency bump.
+ */
+@source './dist';

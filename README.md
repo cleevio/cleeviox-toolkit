@@ -26,6 +26,8 @@
 | [@cleeviox/tsconfig](./packages/tsconfig/README.md) | TypeScript configurations for various project types |
 | [@cleeviox/lint-staged](./packages/lint-staged/README.md) | Lint-staged configurations for pre-commit hooks |
 | [@cleeviox/knip](./packages/knip/README.md) | Knip configurations for cleaning up dead code and unused dependencies |
+| [@cleeviox/create-web-template](./packages/create-web-template/README.md) | Interactive generator for Cleevio Next.js applications (`npm create @cleeviox/web-template`) |
+| [@cleeviox/ui-core](./packages/ui-core/README.md) | Core UI primitives and utilities (Tailwind v4 + React 19) |
 
 
 ## Getting Started

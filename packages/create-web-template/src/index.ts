@@ -3,6 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 import * as p from '@clack/prompts';
 import { Command, Option } from 'commander';
+import { execa } from 'execa';
 import color from 'picocolors';
 
 import { CliError } from './lib/errors.js';
@@ -398,6 +399,23 @@ async function collectConfig(nameArg: string | undefined, flags: RawFlags): Prom
   };
 }
 
+/**
+ * Offered only when it can actually work: interactive session, dependencies
+ * installed, nothing dry-run. Never in -y/CI — a scaffold that leaves a dev
+ * server hanging would break every scripted use.
+ */
+async function shouldRunDev(config: ProjectConfig, flags: RawFlags): Promise<boolean> {
+  if (config.dryRun || !config.install || flags.yes || !process.stdin.isTTY) {
+    return false;
+  }
+  return unwrap(
+    await p.confirm({
+      initialValue: true,
+      message: `Would you like to run the app? (${config.packageManager} run dev)`,
+    }),
+  );
+}
+
 async function main(): Promise<void> {
   const { flags, nameArg } = parseProgram(process.argv);
   const config = await collectConfig(nameArg, flags);
@@ -408,19 +426,32 @@ async function main(): Promise<void> {
 
   const packageManager = config.packageManager;
   const relative = path.relative(process.cwd(), config.targetDir) || '.';
+  const runDev = await shouldRunDev(config, flags);
 
   p.outro(
     [
       color.green('✔ Project ready.'),
       '',
-      `  cd ${relative}`,
-      ...(config.install ? [] : [`  ${packageManager} install`]),
-      `  ${packageManager} run dev`,
+      ...(runDev
+        ? [color.dim(`  Starting dev server in ${relative} — Ctrl+C to stop.`)]
+        : [
+            `  cd ${relative}`,
+            ...(config.install ? [] : [`  ${packageManager} install`]),
+            `  ${packageManager} run dev`,
+          ]),
       ...(result.auditWarnings > 0
         ? ['', color.yellow(`  ⚠ Advisories reported by \`${packageManager} audit\` — review before shipping.`)]
         : []),
     ].join('\n'),
   );
+
+  if (runDev) {
+    try {
+      await execa(packageManager, ['run', 'dev'], { cwd: config.targetDir, stdio: 'inherit' });
+    } catch {
+      // Ctrl+C on the dev server is the normal way to leave — not an error.
+    }
+  }
 }
 
 main().catch((error: unknown) => {

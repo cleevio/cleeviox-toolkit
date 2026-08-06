@@ -18,6 +18,7 @@ Future subcommands (`sync-theme`, `add <feature>`) will live under the same bin.
 4. Renders feature templates (styling, data layer, auth, add-ons) with Handlebars — including a project-specific `CLAUDE.md` built from your answers (scope, stack, features, commands, Cleevio conventions); create-next-app's `AGENTS.md` is kept as the framework-level layer.
 5. Registers the [Cleevio Claude Code marketplace](https://gitlab.com/honzanemecek/cleevio-marketplace) in a committed `.claude/settings.json` (`cleevio-core` + `cleevio-frontend` plugins enabled) and, when the `claude` CLI is available, installs the frontend plugin right away — opt out with `--no-claude-marketplace`.
 6. Installs dependencies with your package manager and runs a non-fatal vulnerability audit — enforce the gate in your CI pipeline, where a failure is actionable.
+7. Offers to start the dev server right away (interactive runs only — never with `-y`, `--dry-run` or `--no-install`).
 
 ## Flags
 

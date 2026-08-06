@@ -6,6 +6,63 @@
 <!-- TODO: describe what this project does and who it is for (one or two sentences). -->
 {{/if}}
 
+## Workflow
+
+1. **Docs first.** Before implementing any new feature, write a plan with the
+   key decisions to `docs/implementation/{topic}.md` (see
+   `docs/implementation/README.md` for the skeleton) and iterate on it until
+   approved. Only then implement.
+2. **Docs stay true.** Every change that affects behavior updates the relevant
+   `docs/implementation/*.md` and the routing table below **in the same
+   change**. Out-of-date docs are treated as bugs.
+3. **Test what is exact.** Business logic, data transformations, and utilities
+   get unit tests — written with or before the implementation. Do not write UI
+   snapshot/visual tests; UI is verified by hand or E2E where it exists.
+4. **Self-documenting code.** One-sentence description above every non-trivial
+   function/component. Non-obvious hacks are documented inline with a
+   reference to what forces them.
+5. When a mistake gets corrected in review, propose a rule for this file so it
+   is never repeated.
+
+## Routing table
+
+When looking for something, start here — and extend this table whenever a new
+significant location appears:
+
+| Looking for… | Location |
+| --- | --- |
+| Feature plans & decisions | `docs/implementation/` |
+| Pages & URL routes | `src/app/` (App Router — folder = route) |
+| Root layout & provider tree | `src/app/layout.tsx`, `src/app/providers.tsx` |
+{{#if (eq data 'tanstack-query')}}
+| Server-state cache setup | `src/lib/query-client.ts` |
+{{/if}}
+{{#if (eq data 'tanstack-query-zustand')}}
+| Server-state cache setup | `src/lib/query-client.ts` |
+| Client-only global state | `src/stores/` |
+{{/if}}
+{{#if (eq auth 'workos')}}
+| Auth session & redirects | `src/middleware.ts` (AuthKit), callback at `src/app/callback/route.ts` |
+{{/if}}
+{{#if (eq auth 'firebase')}}
+| Auth client & config | `src/lib/firebase.ts` |
+{{/if}}
+{{#if (eq styling 'ui-core')}}
+| Shared UI primitives & `cn()` | `@cleeviox/ui-core` (re-export in `src/lib/cn.ts`), design tokens in `src/app/theme.css` |
+{{/if}}
+{{#if (eq styling 'shadcn')}}
+| UI components & `cn()` | `src/components/ui/` (shadcn), `src/lib/utils.ts` |
+{{/if}}
+| Global styles & Tailwind setup | `src/app/globals.css` |
+| Required env vars | `.env.example` |
+{{#if (includes addons 'playwright')}}
+| E2E tests | `e2e/` |
+{{/if}}
+{{#if (includes addons 'docker')}}
+| Container build | `Dockerfile` (Next.js standalone output) |
+{{/if}}
+| Lint/TS/knip rules | two-line extends of `@cleeviox/*` — rules live in the cleeviox-toolkit repo |
+
 ## Tech stack
 
 - Next.js (App Router) + TypeScript strict — `src/` layout, `@/*` import alias

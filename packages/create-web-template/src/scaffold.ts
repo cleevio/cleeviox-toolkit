@@ -117,6 +117,24 @@ async function runCreateNextApp(config: ProjectConfig): Promise<void> {
   });
 }
 
+/**
+ * create-next-app demo assets superseded by the branded landing page
+ * (templates/base/src/app/page.tsx.hbs + icon.svg). favicon.ico must go so
+ * the App Router picks up our icon.svg.
+ */
+const CNA_DEMO_ASSETS = [
+  'public/file.svg',
+  'public/globe.svg',
+  'public/next.svg',
+  'public/vercel.svg',
+  'public/window.svg',
+  'src/app/favicon.ico',
+];
+
+async function removeCreateNextAppDemoAssets(config: ProjectConfig): Promise<void> {
+  await Promise.all(CNA_DEMO_ASSETS.map((asset) => fs.rm(path.join(config.targetDir, asset), { force: true })));
+}
+
 /* ------------------------------------------------------------------ *
  * 2. package.json — dynamic version resolution + deep merge.
  * ------------------------------------------------------------------ */
@@ -383,6 +401,7 @@ export async function scaffold(config: ProjectConfig): Promise<ScaffoldResult> {
 
     p.log.step('Scaffolding Next.js via create-next-app@latest');
     await runCreateNextApp(config);
+    await removeCreateNextAppDemoAssets(config);
 
     spinner.start('Resolving latest stable versions and merging package.json');
     await patchPackageJson(config, features);

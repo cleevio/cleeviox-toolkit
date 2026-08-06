@@ -67,6 +67,14 @@ describe('renderTemplates', () => {
     // covered by globals-css.test.ts).
     expect(read(config, 'src/lib/cn.ts')).toContain("from '@cleeviox/ui-core'");
 
+    // Branded landing page carries the project identity; favicon shipped as icon.svg.
+    const page = read(config, 'src/app/page.tsx');
+    expect(page).toContain('successfully initialized a web project');
+    expect(page).toContain('cleevio.com');
+    expect(page).toContain('Internal test project for the generator.');
+    expect(page).toContain('cleeviox-toolkit');
+    expect(fs.existsSync(path.join(config.targetDir, 'src/app/icon.svg'))).toBe(true);
+
     // Claude marketplace registered and referenced as source of truth.
     const settings = read(config, '.claude/settings.json');
     expect(settings).toContain('cleevio-marketplace');
@@ -76,6 +84,12 @@ describe('renderTemplates', () => {
     const claudeMd = read(config, 'CLAUDE.md');
     expect(claudeMd).toContain('# render-test-app');
     expect(claudeMd).toContain('cleevio-marketplace');
+    // Docs-first workflow + routing table wired to the selected features.
+    expect(claudeMd).toContain('docs/implementation/{topic}.md');
+    expect(claudeMd).toContain('## Routing table');
+    expect(claudeMd).toContain('src/middleware.ts');
+    expect(claudeMd).toContain('src/stores/');
+    expect(read(config, 'docs/implementation/README.md')).toContain('## Skeleton');
     expect(claudeMd).toContain('Internal test project for the generator.');
     expect(claudeMd).toContain('@cleeviox/ui-core');
     expect(claudeMd).toContain('WorkOS AuthKit');
@@ -117,6 +131,13 @@ describe('renderTemplates', () => {
     expect(claudeMd).toContain('TODO: describe what this project does');
     expect(claudeMd).not.toContain('WorkOS');
     expect(claudeMd).not.toContain('cleevio-marketplace');
+    expect(claudeMd).not.toContain('src/middleware.ts');
+    expect(claudeMd).toContain('## Routing table');
+
+    // Landing page renders without the optional about line.
+    const page = read(config, 'src/app/page.tsx');
+    expect(page).toContain('successfully initialized a web project');
+    expect(page).not.toContain('WorkOS');
     expect(fs.existsSync(path.join(config.targetDir, '.claude'))).toBe(false);
   });
 

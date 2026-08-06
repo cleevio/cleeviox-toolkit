@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "landing-preview",
+      "port": 8641,
+      "url": "http://localhost:8641"
+    }
+  ],
+  "version": "0.0.1"
+}

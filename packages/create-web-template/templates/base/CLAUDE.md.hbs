@@ -1,0 +1,137 @@
+# {{projectName}}
+
+{{#if about}}
+{{about}}
+{{else}}
+<!-- TODO: describe what this project does and who it is for (one or two sentences). -->
+{{/if}}
+
+## Workflow
+
+1. **Docs first.** Before implementing any new feature, write a plan with the
+   key decisions to `docs/implementation/{topic}.md` (see
+   `docs/implementation/README.md` for the skeleton) and iterate on it until
+   approved. Only then implement.
+2. **Docs stay true.** Every change that affects behavior updates the relevant
+   `docs/implementation/*.md` and the routing table below **in the same
+   change**. Out-of-date docs are treated as bugs.
+3. **Test what is exact.** Business logic, data transformations, and utilities
+   get unit tests — written with or before the implementation. Do not write UI
+   snapshot/visual tests; UI is verified by hand or E2E where it exists.
+4. **Self-documenting code.** One-sentence description above every non-trivial
+   function/component. Non-obvious hacks are documented inline with a
+   reference to what forces them.
+5. When a mistake gets corrected in review, propose a rule for this file so it
+   is never repeated.
+
+## Routing table
+
+When looking for something, start here — and extend this table whenever a new
+significant location appears:
+
+| Looking for… | Location |
+| --- | --- |
+| Feature plans & decisions | `docs/implementation/` |
+| Pages & URL routes | `src/app/` (App Router — folder = route) |
+| Root layout & provider tree | `src/app/layout.tsx`, `src/app/providers.tsx` |
+{{#if (eq data 'tanstack-query')}}
+| Server-state cache setup | `src/lib/query-client.ts` |
+{{/if}}
+{{#if (eq data 'tanstack-query-zustand')}}
+| Server-state cache setup | `src/lib/query-client.ts` |
+| Client-only global state | `src/stores/` |
+{{/if}}
+{{#if (eq auth 'workos')}}
+| Auth session & redirects | `src/middleware.ts` (AuthKit), callback at `src/app/callback/route.ts` |
+{{/if}}
+{{#if (eq auth 'firebase')}}
+| Auth client & config | `src/lib/firebase.ts` |
+{{/if}}
+{{#if (eq styling 'ui-core')}}
+| Shared UI primitives & `cn()` | `@cleeviox/ui-core` (re-export in `src/lib/cn.ts`), design tokens in `src/app/theme.css` |
+{{/if}}
+{{#if (eq styling 'shadcn')}}
+| UI components & `cn()` | `src/components/ui/` (shadcn), `src/lib/utils.ts` |
+{{/if}}
+| Global styles & Tailwind setup | `src/app/globals.css` |
+| Required env vars | `.env.example` |
+{{#if (includes addons 'playwright')}}
+| E2E tests | `e2e/` |
+{{/if}}
+{{#if (includes addons 'docker')}}
+| Container build | `Dockerfile` (Next.js standalone output) |
+{{/if}}
+| Lint/TS/knip rules | two-line extends of `@cleeviox/*` — rules live in the cleeviox-toolkit repo |
+
+## Tech stack
+
+- Next.js (App Router) + TypeScript strict — `src/` layout, `@/*` import alias
+{{#if (eq styling 'ui-core')}}
+- Tailwind CSS v4 + `@cleeviox/ui-core` — use `cn()` and components from the package; design tokens live in `src/app/theme.css`
+{{/if}}
+{{#if (eq styling 'shadcn')}}
+- Tailwind CSS v4 + shadcn/ui — add components with `npx shadcn add <name>`; `cn()` lives in `src/lib/utils.ts`
+{{/if}}
+{{#if (eq styling 'tailwind-only')}}
+- Tailwind CSS v4
+{{/if}}
+{{#if (eq data 'tanstack-query')}}
+- TanStack Query — client cache in `src/lib/query-client.ts`, provider tree in `src/app/providers.tsx`
+{{/if}}
+{{#if (eq data 'tanstack-query-zustand')}}
+- TanStack Query (server data, `src/lib/query-client.ts`) + Zustand (client-owned state, `src/stores/`) — keep server data OUT of Zustand
+{{/if}}
+{{#if (eq data 'server-actions')}}
+- Server Actions only — no client data layer; add one deliberately if needed
+{{/if}}
+{{#if (eq auth 'workos')}}
+- WorkOS AuthKit — session middleware in `src/middleware.ts`, OAuth callback at `src/app/callback/route.ts`; WORKOS_* env vars required
+{{/if}}
+{{#if (eq auth 'firebase')}}
+- Firebase Auth — client init in `src/lib/firebase.ts`; NEXT_PUBLIC_FIREBASE_* env vars required
+{{/if}}
+{{#if (includes addons 'docker')}}
+- Docker — multi-stage build against Next.js standalone output (`Dockerfile`)
+{{/if}}
+{{#if (includes addons 'storybook')}}
+- Storybook — config in `.storybook/`, stories co-located as `*.stories.tsx`
+{{/if}}
+{{#if (includes addons 'playwright')}}
+- Playwright — E2E specs in `e2e/`
+{{/if}}
+- Biome (lint + format), knip, lint-staged + husky — all extend `@cleeviox/*` config packages
+
+## Commands
+
+- `{{packageManager}} run dev` — dev server
+- `{{packageManager}} run build` — production build
+- `{{packageManager}} run ts` — typecheck (run after non-trivial changes)
+- `{{packageManager}} run check` — Biome lint + format check (`check:fix` to write)
+- `{{packageManager}} run knip` — dead code / unused dependency detection
+{{#if (includes addons 'playwright')}}
+- `{{packageManager}} run test:e2e` — Playwright E2E (`test:e2e:ui` for the inspector)
+{{/if}}
+{{#if (includes addons 'storybook')}}
+- `{{packageManager}} run storybook` — component workbench on :6006
+{{/if}}
+
+{{#if claudeMarketplace}}
+## Claude tooling
+
+The Cleevio plugin marketplace is configured in `.claude/settings.json`
+(`cleevio-core` + `cleevio-frontend` plugins enabled) — prefer its shared
+skills, agents, and reviewers over ad-hoc approaches. Marketplace repo:
+https://gitlab.com/honzanemecek/cleevio-marketplace
+
+{{/if}}
+## Conventions
+
+- Lint/format/TS rules are NOT configured here — `tsconfig.json`, `biome.jsonc`,
+  `knip.config.ts` and `lint-staged.config.js` are two-line extends of
+  `@cleeviox/*` packages. Propose rule changes in the cleeviox-toolkit repo,
+  never inline; config updates arrive as dependency bumps.
+- Server Components by default; add `'use client'` only where interaction demands it.
+- Required environment variables are documented in `.env.example` — keep it in
+  sync when adding new ones; never commit real values.
+- Scaffolded by `@cleeviox/create-web-template`; framework-level agent guidance
+  lives in `AGENTS.md` (generated by create-next-app).

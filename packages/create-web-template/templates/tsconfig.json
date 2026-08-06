@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // Typechecks the STATIC template files (.ts/.tsx) against the same strict
+  // config generated apps use, so template rot is caught by `bun run ts`
+  // instead of by the first person to scaffold a project. Their dependencies
+  // are devDependencies of this package. `.hbs` files stay unchecked.
+  //
+  // This file is also what makes editors resolve imports inside templates/ —
+  // it is the nearest tsconfig for these files.
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "extends": "@cleeviox/tsconfig/nextjs",
+  "include": ["**/*.ts", "**/*.tsx", "env.d.ts"]
+}

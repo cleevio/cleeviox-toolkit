@@ -1,0 +1,14 @@
+{
+  "enabledPlugins": {
+    "cleevio-core@cleevio-marketplace": true,
+    "cleevio-frontend@cleevio-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "cleevio-marketplace": {
+      "source": {
+        "source": "git",
+        "url": "https://gitlab.com/honzanemecek/cleevio-marketplace.git"
+      }
+    }
+  }
+}

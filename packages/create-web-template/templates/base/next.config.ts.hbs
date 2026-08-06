@@ -1,0 +1,11 @@
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+{{#if (includes addons 'docker')}}
+  // Required for the multi-stage Dockerfile: emits a self-contained server bundle.
+  output: 'standalone',
+{{/if}}
+  reactStrictMode: true,
+};
+
+export default nextConfig;

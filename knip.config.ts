@@ -17,6 +17,9 @@ export default defineConfig(baseMonorepoRootConfig, {
     'packages/create-web-template': {
       ...baseMonorepoRootConfig.workspaces['packages/*'],
       entry: ['src/index.ts'],
+      // System CLIs invoked at scaffold time (best-effort, never npm deps):
+      // `claude` installs marketplace plugins into the generated project.
+      ignoreBinaries: ['claude'],
       // devDependencies that exist purely so the template typecheck
       // (templates/tsconfig.json) can resolve template imports. Templates
       // themselves stay out of analysis via the `project` globs below.

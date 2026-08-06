@@ -64,6 +64,7 @@
     "format:fix": "biome format --write .",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
+    "postbuild": "chmod +x dist/index.js",
     "prebuild": "del dist tsconfig.build.tsbuildinfo",
     "test": "bun test",
     "test:cov": "bun test --coverage --coverage-reporter=lcov",

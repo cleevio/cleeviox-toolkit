@@ -1,5 +1,12 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+  "css": {
+    // Next.js projects style with Tailwind v4 (@theme, @source, @custom-variant…)
+    // — without this the parser rejects every globals.css.
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "extends": ["./reactjs.jsonc"],
   "linter": {
     "rules": {

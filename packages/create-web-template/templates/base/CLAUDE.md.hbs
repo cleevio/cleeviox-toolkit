@@ -42,13 +42,16 @@ significant location appears:
 | Client-only global state | `src/stores/` |
 {{/if}}
 {{#if (eq auth 'workos')}}
-| Auth session & redirects | `src/middleware.ts` (AuthKit), callback at `src/app/callback/route.ts` |
+| Auth session & redirects | `src/proxy.ts` (AuthKit), callback at `src/app/callback/route.ts` |
 {{/if}}
 {{#if (eq auth 'firebase')}}
 | Auth client & config | `src/lib/firebase.ts` |
 {{/if}}
 {{#if (eq styling 'ui-core')}}
-| Shared UI primitives & `cn()` | `@cleeviox/ui-core` (re-export in `src/lib/cn.ts`), design tokens in `src/app/theme.css` |
+| Shared UI primitives & `cn()` | `@cleeviox/ui-core` (re-export in `src/lib/cn.ts`) |
+{{/if}}
+{{#if figmaUrl}}
+| Design tokens (generated from Figma) | `src/app/theme.css` |
 {{/if}}
 {{#if (eq styling 'shadcn')}}
 | UI components & `cn()` | `src/components/ui/` (shadcn), `src/lib/utils.ts` |
@@ -67,7 +70,7 @@ significant location appears:
 
 - Next.js (App Router) + TypeScript strict — `src/` layout, `@/*` import alias
 {{#if (eq styling 'ui-core')}}
-- Tailwind CSS v4 + `@cleeviox/ui-core` — use `cn()` and components from the package; design tokens live in `src/app/theme.css`
+- Tailwind CSS v4 + `@cleeviox/ui-core` — use `cn()` and components from the package
 {{/if}}
 {{#if (eq styling 'shadcn')}}
 - Tailwind CSS v4 + shadcn/ui — add components with `npx shadcn add <name>`; `cn()` lives in `src/lib/utils.ts`
@@ -85,7 +88,7 @@ significant location appears:
 - Server Actions only — no client data layer; add one deliberately if needed
 {{/if}}
 {{#if (eq auth 'workos')}}
-- WorkOS AuthKit — session middleware in `src/middleware.ts`, OAuth callback at `src/app/callback/route.ts`; WORKOS_* env vars required
+- WorkOS AuthKit — session proxy in `src/proxy.ts`, OAuth callback at `src/app/callback/route.ts`; WORKOS_* env vars required
 {{/if}}
 {{#if (eq auth 'firebase')}}
 - Firebase Auth — client init in `src/lib/firebase.ts`; NEXT_PUBLIC_FIREBASE_* env vars required

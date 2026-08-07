@@ -294,15 +294,19 @@ async function patchGlobalsCss(
   await fs.writeFile(file, css, 'utf8');
 }
 
+/**
+ * Always written — the generated CLAUDE.md points at it as the env-var
+ * registry, so it must exist even when no feature contributes variables yet.
+ */
 async function writeEnvExample(config: ProjectConfig, features: readonly FeatureSpec[]): Promise<void> {
   const env: Record<string, string> = Object.assign({}, ...features.map((feature) => feature.env ?? {}));
-  if (Object.keys(env).length === 0) {
-    return;
-  }
+  const header =
+    '# Environment variables this app needs — mirror new ones here (values stay empty).\n' +
+    '# Copy to .env.local and fill in real values; never commit those.\n';
   const body = Object.entries(env)
-    .map(([key, value]) => `${key}=${value}`)
-    .join('\n');
-  await writeText(path.join(config.targetDir, '.env.example'), `${body}\n`, config);
+    .map(([key, value]) => `${key}=${value}\n`)
+    .join('');
+  await writeText(path.join(config.targetDir, '.env.example'), `${header}${body}`, config);
 }
 
 /* ------------------------------------------------------------------ *
@@ -360,6 +364,23 @@ async function installClaudePlugins(config: ProjectConfig): Promise<void> {
 
 async function install(config: ProjectConfig): Promise<void> {
   await execa(config.packageManager, ['install'], { cwd: config.targetDir, stdio: 'inherit' });
+}
+
+/**
+ * create-next-app's output and the project's own biome config (via
+ * @cleeviox/biome) disagree on formatting style; the config is the source of
+ * truth, so run its fixer once — otherwise the very first commit fights the
+ * husky pre-commit hook. Needs node_modules, hence after install. Non-fatal:
+ * a lint residue is the developer's to review, not a scaffold failure.
+ */
+async function normalizeFormatting(config: ProjectConfig): Promise<void> {
+  const result = await execa(config.packageManager, ['run', 'check:fix'], {
+    cwd: config.targetDir,
+    reject: false,
+  });
+  if (result.exitCode !== 0) {
+    p.log.warn('`check:fix` left issues behind — run it in the project to see them.');
+  }
 }
 
 /**
@@ -428,6 +449,10 @@ export async function scaffold(config: ProjectConfig): Promise<ScaffoldResult> {
 
   p.log.step(`Installing dependencies with ${config.packageManager}`);
   await install(config);
+
+  spinner.start('Aligning formatting with the project lint config');
+  await normalizeFormatting(config);
+  spinner.stop('Formatting aligned');
 
   let auditWarnings = 0;
   if (config.audit) {

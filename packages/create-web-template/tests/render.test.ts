@@ -59,8 +59,8 @@ describe('renderTemplates', () => {
     expect(read(config, 'src/app/layout.tsx')).toContain('render-test-app');
     expect(read(config, 'src/app/providers.tsx')).toContain('QueryClientProvider');
 
-    // Auth fragment: AuthKit middleware + OAuth callback route.
-    expect(read(config, 'src/middleware.ts')).toContain('authkitMiddleware');
+    // Auth fragment: AuthKit proxy (Next 16.3 convention) + OAuth callback route.
+    expect(read(config, 'src/proxy.ts')).toContain('authkitMiddleware');
     expect(read(config, 'src/app/callback/route.ts')).toContain('handleAuth');
 
     // ui-core styling: cn re-export (globals.css wiring is a patch step,
@@ -87,8 +87,10 @@ describe('renderTemplates', () => {
     // Docs-first workflow + routing table wired to the selected features.
     expect(claudeMd).toContain('docs/implementation/{topic}.md');
     expect(claudeMd).toContain('## Routing table');
-    expect(claudeMd).toContain('src/middleware.ts');
+    expect(claudeMd).toContain('src/proxy.ts');
     expect(claudeMd).toContain('src/stores/');
+    // theme.css is promised only when a Figma URL actually generates it.
+    expect(claudeMd).not.toContain('theme.css');
     expect(read(config, 'docs/implementation/README.md')).toContain('## Skeleton');
     expect(claudeMd).toContain('Internal test project for the generator.');
     expect(claudeMd).toContain('@cleeviox/ui-core');
@@ -106,8 +108,10 @@ describe('renderTemplates', () => {
     expect(read(config, 'src/stores/app-store.ts')).toContain('zustand');
     expect(read(config, 'playwright.config.ts')).toContain('pnpm run dev');
 
-    // Env contributions aggregated.
-    expect(read(config, '.env.example')).toContain('WORKOS_CLIENT_ID=');
+    // Env contributions aggregated under the standing header.
+    const envExample = read(config, '.env.example');
+    expect(envExample).toContain('WORKOS_CLIENT_ID=');
+    expect(envExample).toContain('mirror new ones here');
   });
 
   test('minimal config renders no client data layer and no wrappers', async () => {
@@ -121,9 +125,10 @@ describe('renderTemplates', () => {
 
     const providers = read(config, 'src/app/providers.tsx');
     expect(providers).not.toContain('QueryClientProvider');
-    expect(fs.existsSync(path.join(config.targetDir, 'src/middleware.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(config.targetDir, 'src/proxy.ts'))).toBe(false);
     expect(read(config, 'next.config.ts')).not.toContain('standalone');
-    expect(fs.existsSync(path.join(config.targetDir, '.env.example'))).toBe(false);
+    // .env.example always exists — CLAUDE.md's routing table points at it.
+    expect(read(config, '.env.example')).toContain('mirror new ones here');
     expect(fs.existsSync(path.join(config.targetDir, '.storybook'))).toBe(false);
 
     // Empty scope leaves the TODO placeholder in CLAUDE.md.
@@ -131,7 +136,7 @@ describe('renderTemplates', () => {
     expect(claudeMd).toContain('TODO: describe what this project does');
     expect(claudeMd).not.toContain('WorkOS');
     expect(claudeMd).not.toContain('cleevio-marketplace');
-    expect(claudeMd).not.toContain('src/middleware.ts');
+    expect(claudeMd).not.toContain('src/proxy.ts');
     expect(claudeMd).toContain('## Routing table');
 
     // Landing page renders without the optional about line.

@@ -1,5 +1,5 @@
 # Multi-stage build for Next.js `output: 'standalone'`.
-FROM node:24-alpine AS base
+FROM node:24.20.0-alpine AS base
 WORKDIR /app
 
 FROM base AS deps
@@ -14,7 +14,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm run build
 
-FROM node:24-alpine AS runner
+FROM node:24.20.0-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

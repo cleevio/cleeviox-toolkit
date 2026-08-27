@@ -13,7 +13,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN bun run build
 
 # The standalone server is plain Node.js output — run it on the Node image.
-FROM node:24-alpine AS runner
+FROM node:24.20.0-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

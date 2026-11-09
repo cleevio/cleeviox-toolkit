@@ -67,11 +67,25 @@
         "noDuplicateTestHooks": "error",
         "noEmptyBlock": "error",
         "noImportantInKeyframe": "error",
-        "noReactSpecificProps": "error",
+        // Meant for Solid/Qwik — in React it flags every className and its fix rewrites them to `class`.
+        "noReactSpecificProps": "off",
         "noUnknownAtRules": "error",
         "useGoogleFontDisplay": "error"
       }
     }
   },
+  "overrides": [
+    {
+      // Storybook config and CSF stories are read through their default export.
+      "includes": ["**/.storybook/*.{js,ts}", "**/*.stories.{js,jsx,ts,tsx}"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
   "root": false
 }

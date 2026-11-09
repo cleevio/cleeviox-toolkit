@@ -69,6 +69,15 @@ describe('selectFeatures', () => {
     expect(scripts['test:e2e']).toBe('playwright test');
   });
 
+  test('docker addon switches next.config to standalone output', () => {
+    const keysFor = (addons: ProjectConfig['addons']): string[] =>
+      selectFeatures(makeConfig({ addons })).flatMap((feature) =>
+        (feature.nextConfig ?? []).map((option) => option.key),
+      );
+    expect(keysFor(['docker'])).toEqual(['reactStrictMode', 'output']);
+    expect(keysFor([])).toEqual(['reactStrictMode']);
+  });
+
   test('no feature spec hardcodes a version', () => {
     for (const styling of STYLINGS) {
       for (const feature of selectFeatures(makeConfig({ addons: ADDONS, styling }))) {

@@ -55,7 +55,6 @@ describe('renderTemplates', () => {
     await renderTemplates(config, selectFeatures(config));
 
     // Handlebars conditionals resolved, .hbs suffix stripped.
-    expect(read(config, 'next.config.ts')).toContain("output: 'standalone'");
     expect(read(config, 'src/app/layout.tsx')).toContain('render-test-app');
     expect(read(config, 'src/app/providers.tsx')).toContain('QueryClientProvider');
 
@@ -100,6 +99,11 @@ describe('renderTemplates', () => {
 
     // Underscore segments became dot segments.
     expect(fs.existsSync(path.join(config.targetDir, '.dockerignore'))).toBe(true);
+    // Husky runs lint-staged on commit; editors format with Biome.
+    expect(read(config, '.husky/pre-commit')).toBe('lint-staged\n');
+    expect(read(config, '.vscode/settings.json')).toContain('"editor.defaultFormatter": "biomejs.biome"');
+    // next.config.ts stays create-next-app's — patched, never rendered (next-config.test.ts).
+    expect(fs.existsSync(path.join(config.targetDir, 'next.config.ts'))).toBe(false);
     // The static Dockerfile matching the chosen package manager was copied.
     expect(read(config, 'Dockerfile')).toContain('pnpm install --frozen-lockfile');
     expect(fs.existsSync(path.join(config.targetDir, '.storybook/main.ts'))).toBe(true);
@@ -126,7 +130,6 @@ describe('renderTemplates', () => {
     const providers = read(config, 'src/app/providers.tsx');
     expect(providers).not.toContain('QueryClientProvider');
     expect(fs.existsSync(path.join(config.targetDir, 'src/proxy.ts'))).toBe(false);
-    expect(read(config, 'next.config.ts')).not.toContain('standalone');
     // .env.example always exists — CLAUDE.md's routing table points at it.
     expect(read(config, '.env.example')).toContain('mirror new ones here');
     expect(fs.existsSync(path.join(config.targetDir, '.storybook'))).toBe(false);

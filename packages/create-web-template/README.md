@@ -15,7 +15,7 @@ Future subcommands (`sync-theme`, `add <feature>`) will live under the same bin.
 1. Runs `create-next-app@latest` (App Router, TypeScript, Tailwind, `src/` dir) — no vendored Next.js boilerplate, so new projects always start on the current stable release.
 2. Resolves the latest stable versions of all optional dependencies from the registry (caret ranges, nothing pinned by hand) and merges them into `package.json`.
 3. Attaches the Cleevio toolkit configs (`@cleeviox/tsconfig`, `@cleeviox/biome`, `@cleeviox/knip`, `@cleeviox/lint-staged`) as two-line `extends` files.
-4. Renders feature templates (styling, data layer, auth, add-ons) with Handlebars — including a project-specific `CLAUDE.md` built from your answers (scope, stack, features, commands, Cleevio conventions); create-next-app's `AGENTS.md` is kept as the framework-level layer.
+4. Renders feature templates (styling, data layer, auth, add-ons) with Handlebars — including a project-specific `CLAUDE.md` built from your answers (scope, stack, features, commands, Cleevio conventions); create-next-app's `AGENTS.md` is kept as the framework-level layer. Also ships a `.husky/pre-commit` hook that runs lint-staged and `.vscode/settings.json` that makes Biome the formatter on save.
 5. Registers the [Cleevio Claude Code marketplace](https://gitlab.com/honzanemecek/cleevio-marketplace) in a committed `.claude/settings.json` (`cleevio-core` + `cleevio-frontend` plugins enabled) and, when the `claude` CLI is available, installs the frontend plugin right away — opt out with `--no-claude-marketplace`.
 6. Installs dependencies with your package manager and runs a non-fatal vulnerability audit — enforce the gate in your CI pipeline, where a failure is actionable.
 7. Offers to start the dev server right away (interactive runs only — never with `-y`, `--dry-run` or `--no-install`).
@@ -53,4 +53,5 @@ Requires a token in `FIGMA_TOKEN` (or `FIGMA_ACCESS_TOKEN`) with the `file_varia
 - `*.hbs` files are rendered with Handlebars (`strict` mode); everything else is copied verbatim.
 - A path segment starting with `_` becomes a dot segment on output (`_storybook/` → `.storybook/`, `_dockerignore` → `.dockerignore`) because npm strips dotfiles like `.gitignore` from published tarballs.
 - Fragments are applied in feature order; later fragments may overwrite earlier files — that is the composition mechanism, not an accident.
+- Files create-next-app owns are patched, never rendered over: features contribute `cssImports` (inserted into `globals.css`) and `nextConfig` options (inserted into the `nextConfig` object), so whatever create-next-app wires there — e.g. the Tailwind turbopack loader since 16.4 — survives.
 - The Dockerfile ships as three static, per-package-manager files (`addons/docker/{pnpm,npm,bun}/Dockerfile`) instead of one template, so editors and hadolint can lint them.

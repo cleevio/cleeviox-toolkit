@@ -11,6 +11,7 @@ import { CliError } from './lib/errors.js';
 import { fetchFigmaVariables, figmaVariablesToThemeCss, parseFigmaFileKey } from './lib/figma.js';
 import { injectCssImports } from './lib/globals-css.js';
 import { featureDependencyNames, type Manifest, mergeManifest } from './lib/manifest.js';
+import { injectNextConfigOptions } from './lib/next-config.js';
 import { latestMajor, packageExists, resolveAll } from './lib/npm-registry.js';
 import { auditArgs, dlx } from './lib/package-manager.js';
 import { pkg, SCOPE } from './lib/scope.js';
@@ -295,6 +296,32 @@ async function patchGlobalsCss(
 }
 
 /**
+ * next.config.ts is create-next-app's file too — feature options go into its
+ * config object, never over it, so what create-next-app wires there survives
+ * (since 16.4, the Tailwind turbopack loader that replaced postcss.config.mjs).
+ */
+async function patchNextConfig(config: ProjectConfig, features: readonly FeatureSpec[]): Promise<void> {
+  const options = features.flatMap((feature) => feature.nextConfig ?? []);
+  if (options.length === 0) {
+    return;
+  }
+
+  const keys = options.map((option) => option.key).join(', ');
+  if (config.dryRun) {
+    p.log.step(`would set ${keys} in next.config.ts`);
+    return;
+  }
+
+  const file = path.join(config.targetDir, 'next.config.ts');
+  const { anchored, source } = injectNextConfigOptions(await fs.readFile(file, 'utf8'), options);
+  if (!anchored) {
+    p.log.warn(`No \`nextConfig\` object found in next.config.ts — add ${keys} manually.`);
+    return;
+  }
+  await fs.writeFile(file, source, 'utf8');
+}
+
+/**
  * Always written — the generated CLAUDE.md points at it as the env-var
  * registry, so it must exist even when no feature contributes variables yet.
  */
@@ -439,6 +466,7 @@ export async function scaffold(config: ProjectConfig): Promise<ScaffoldResult> {
     await writeText(path.join(config.targetDir, 'src', 'app', 'theme.css'), themeCss, config);
   }
   await patchGlobalsCss(config, features, themeCss === undefined ? [] : ['./theme.css']);
+  await patchNextConfig(config, features);
   spinner.stop('Templates rendered');
 
   await installClaudePlugins(config);

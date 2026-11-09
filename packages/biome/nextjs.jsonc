@@ -10,9 +10,36 @@
   "extends": ["./reactjs.jsonc"],
   "linter": {
     "rules": {
+      "correctness": {
+        // Turbopack can't resolve './file.js' to file.tsx, and the forced .js
+        // fix rewrites `import './globals.css'` to './globals.js'.
+        "useImportExtensions": "off"
+      },
       "performance": {
         "noImgElement": "error",
         "useGoogleFontPreconnect": "warn"
+      },
+      "style": {
+        // Route segments export their config (metadata, revalidate, …) next to the component.
+        "useComponentExportOnlyModules": {
+          "level": "error",
+          "options": {
+            "allowExportNames": [
+              "metadata",
+              "generateMetadata",
+              "viewport",
+              "generateViewport",
+              "generateStaticParams",
+              "dynamic",
+              "dynamicParams",
+              "revalidate",
+              "fetchCache",
+              "runtime",
+              "preferredRegion",
+              "maxDuration"
+            ]
+          }
+        }
       },
       "suspicious": {
         "noDocumentImportInPage": "error",
@@ -20,5 +47,28 @@
       }
     }
   },
-  "root": false
+  "overrides": [
+    {
+      // Next.js file conventions that must default-export.
+      "includes": [
+        "**/app/**/{page,layout,template,loading,error,global-error,not-found,forbidden,unauthorized,default}.{js,jsx,ts,tsx}",
+        "**/app/**/{icon,apple-icon,opengraph-image,twitter-image,sitemap,robots,manifest}.{js,jsx,ts,tsx}",
+        "**/{proxy,middleware}.{js,ts}"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
+  "root": false,
+  // Skip what the project's .gitignore excludes — .next/, out/, next-env.d.ts.
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
 }

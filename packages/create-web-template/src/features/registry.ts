@@ -59,6 +59,13 @@ const ADDONS: Record<ProjectConfig['addons'][number], (config: ProjectConfig) =>
   // The Dockerfile differs wholesale per package manager, so it ships as three
   // static, editor-lintable files instead of one Handlebars template.
   docker: ({ packageManager }) => ({
+    nextConfig: [
+      {
+        comment: 'Required for the multi-stage Dockerfile: emits a self-contained server bundle.',
+        key: 'output',
+        value: "'standalone'",
+      },
+    ],
     templates: ['addons/docker/common', `addons/docker/${packageManager}`],
   }),
   playwright: () => ({
@@ -95,6 +102,7 @@ const BASE: FeatureSpec = {
     'lint-staged',
     'husky',
   ],
+  nextConfig: [{ key: 'reactStrictMode', value: 'true' }],
   scripts: {
     check: 'biome check',
     'check:fix': 'biome check --write .',

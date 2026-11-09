@@ -31,6 +31,14 @@ export interface ProjectConfig {
   readonly targetDir: string;
 }
 
+/** One `key: value` entry of next.config.ts; `value` is TypeScript source. */
+export interface NextConfigOption {
+  /** Rendered as a line comment above the entry. */
+  readonly comment?: string;
+  readonly key: string;
+  readonly value: string;
+}
+
 /** What a single feature contributes to the generated project. */
 export interface FeatureSpec {
   /**
@@ -43,6 +51,11 @@ export interface FeatureSpec {
   readonly dependencies?: readonly string[];
   readonly devDependencies?: readonly string[];
   readonly env?: Readonly<Record<string, string>>;
+  /**
+   * Options inserted at the top of the app's `nextConfig` object — the
+   * create-next-app next.config.ts is patched, never overwritten.
+   */
+  readonly nextConfig?: readonly NextConfigOption[];
   readonly scripts?: Readonly<Record<string, string>>;
   /** Template dirs, relative to `templates/`, applied in order. */
   readonly templates?: readonly string[];
